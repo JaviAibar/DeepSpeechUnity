@@ -17,6 +17,9 @@ public class TranscripterScript : MonoBehaviour
     public TMP_InputField audioPath;
     public TMP_InputField outputPath;
     public TMP_InputField name;
+    public GameObject fakeVideoPanel;
+    public Toggle fakeVideoToggle;
+    private string audioRegex = @"\.(3gp|aa|aac|act|aiff|alac|amr|ape|au|awb|dss|dvf|flac|gsm|iklax|ivs|m4a|m4b|m4p|mmf|mp3|mpc|msv|mpc|msv|nmf|ogg|oga|mogg|opus|ra|rm|raw|rf64|sln|tta|voc|vox|wav|wma|wv|webm|8svx|cda)";
     Process cmd;
     // Engineer | https://stackoverflow.com/a/11794507
     string regexValidName = @"^[\w\-. ]+$";
@@ -37,7 +40,6 @@ public class TranscripterScript : MonoBehaviour
                 languages.Add(option);
             }
         }
-
         dropDownLanguages.options = languages;
         //textMeshPro.text = Python(@".\Assets\HelloWorld.py", "");
         //print(CMD("deepspeech", "--model "));
@@ -55,6 +57,8 @@ public class TranscripterScript : MonoBehaviour
         cmd.StartInfo.RedirectStandardError = true;
         cmd.StartInfo.CreateNoWindow = true;
         cmd.StartInfo.UseShellExecute = false;
+
+        // svick | https://stackoverflow.com/a/10789196
         cmd.EnableRaisingEvents = true;
         cmd.Exited += (sender, args) =>
         {
@@ -112,26 +116,32 @@ public class TranscripterScript : MonoBehaviour
 
             //ProcessAudioToText($"\"{FileBrowser.Result[0]}\"");
 
-            // Kevin Aenmey | https://stackoverflow.com/a/11122523
+            
             if (sender == "saveButton")
             {
                 PrintLogToFile(info.text, FileBrowser.Result[0]);
             }
             else
             {
+                // Kevin Aenmey | https://stackoverflow.com/a/11122523
                 System.Reflection.FieldInfo field = GetType().GetField(sender);
                 if (field == null) PrintToOutput("InputField not found", true);
                 else
                 {
                     TMP_InputField inputField = ((TMP_InputField)field.GetValue(this));
+                    //print(Path.GetExtension(FileBrowser.Result[0]));
+                    if (inputField.name.Contains("audio") && CheckRegex(Path.GetExtension(FileBrowser.Result[0]), audioRegex))
+                    { //MimeMapping.MimeUtility.GetMimeMapping(FileBrowser.Result[0]) == "Audio"
+                        fakeVideoPanel.SetActive(true);
+                    } else
+                    {
+                        fakeVideoPanel.SetActive(false);
+                    }
                     inputField.text = FileBrowser.Result[0];
                 }
             }
 
 
-
-            //Python("\"\""+Application.streamingAssetsPath+"\\client.py\" --model German.pbmm --scorer German.scorer --audio \""+FileBrowser.Result[0]+"\"\"");
-            //ProcessAudioToText(FileBrowser.Result[0]);
             // FileBrowserHelpers.CopyFile(FileBrowser.Result[0], destinationPath);
         }
     }
@@ -151,13 +161,12 @@ public class TranscripterScript : MonoBehaviour
             ProcessAudioToText();
         else
             PrintToOutput("Audio path not selected", true);
-
-
-
     }
+
     void ProcessAudioToText()
     {
         loading.enabled = true;
+
 
 
         string command = $"\"{Application.streamingAssetsPath}/client.py\"";
@@ -166,11 +175,8 @@ public class TranscripterScript : MonoBehaviour
         command += @" --scorer " + $"\"{Application.streamingAssetsPath}/Languages/German.scorer\"";
         command += " --audio " + $"\"{audioPath.text}\"";
         command += (!string.IsNullOrEmpty(outputPath.text) ? (" --output " + $"\"{outputPath.text}\"") : "");
-        command += (!string.IsNullOrEmpty(name.text) && CheckRegex(name.text) ? (" --srt_name " + name.text) : "");
+        command += (!string.IsNullOrEmpty(name.text) && CheckRegex(name.text, regexValidName) ? (" --srt_name " + name.text) : "");
         PrintToOutput("Executed: " + command);
-        //cmd.StartInfo.Arguments = $"\"{Application.streamingAssetsPath}\"" + @"\client.py --extended --model .\Assets\StreamingAssets\Languages\German.pbmm --scorer .\Assets\StreamingAssets\Languages\German.scorer --audio " + $"\"{audioPath.text}\"" +
-        //           (!string.IsNullOrEmpty(outputPath.text) ? (" --output " + $"\"{outputPath.text}\"") : "") +
-        //           (!string.IsNullOrEmpty(name.text) && CheckRegex(name.text) ? (" --name-srt " + name.text) : "");
         cmd.StartInfo.Arguments = command;
         bool started = cmd.Start();
         if (started)
@@ -179,7 +185,10 @@ public class TranscripterScript : MonoBehaviour
             PrintToOutput("Process could not be started", true);
         // cmd.StandardInput.WriteLine(@"deepspeech --model .\Languages\German.pbmm --scorer .\Languages\German.scorer --audio " + clip);
         //  cmd.StandardInput.Flush();
-        // svick | https://stackoverflow.com/a/10789196
+        if (fakeVideoPanel.activeSelf && fakeVideoToggle.isOn)
+        {
+            GenerateFakeVideo();
+        }
 
 
 
@@ -212,6 +221,11 @@ public class TranscripterScript : MonoBehaviour
         }
         // print(errors);
         return results;
+
+    }
+
+    public void GenerateFakeVideo()
+    {
 
     }
 
@@ -255,9 +269,9 @@ public class TranscripterScript : MonoBehaviour
         PrintToOutput("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non nunc quis eros sollicitudin euismod. Curabitur commodo neque tortor, in elementum mi pulvinar et. Curabitur porttitor lacus augue, in aliquam nibh tempor ac. Fusce sed consequat leo. Quisque elementum justo ac ullamcorper tempor. Donec at lacus dolor. Vivamus ut purus ligula. Etiam vel eros a orci pulvinar iaculis. Aenean scelerisque malesuada mauris quis lobortis. Ut placerat imperdiet ante non iaculis. Nunc vel varius urna, sit amet mattis lacus. Morbi vestibulum aliquet nisi eget molestie. Donec a lectus eget metus ornare mollis. Aliquam eget turpis at risus imperdiet tristique. Donec pellentesque nec urna at malesuada. Phasellus eget sodales libero.\n\nDuis porttitor id elit et volutpat.Vivamus justo neque, sollicitudin at pellentesque nec, auctor id ipsum.Morbi hendrerit nunc eget massa euismod tristique.Aenean lacinia pharetra mollis.Integer eget sapien tristique, ultricies tortor et, accumsan enim.Duis lacus turpis, rhoncus eu risus a, convallis ornare dui.Praesent molestie pellentesque nisi ut lacinia.\n");
     }
 
-    public bool CheckRegex(string text)
+    public bool CheckRegex(string text, string regex)
     {
-        Regex rgx = new Regex(regexValidName);
+        Regex rgx = new Regex(regex);
         return rgx.IsMatch(text);
     }
 
