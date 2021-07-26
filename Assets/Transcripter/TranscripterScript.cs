@@ -7,10 +7,11 @@ using UnityEngine.UI;
 using SimpleFileBrowser;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 public class TranscripterScript : MonoBehaviour
 {
-    public TextMeshProUGUI info;
+    public TMP_InputField info;
     public TMP_Dropdown dropDownLanguages;
     public Image loading;
     public TMP_InputField audioPath;
@@ -24,9 +25,10 @@ public class TranscripterScript : MonoBehaviour
         InitializeCMD();
         audioPath.text = "C:/Users/War zone/Documents/aa UPV tmp/TempFG/DeepSpeechUnity/Assets/StreamingAssets/Cari.wav";
         FileBrowser.AddQuickLink("StreamingAssets", Application.streamingAssetsPath, null);
-        var info = new DirectoryInfo(Application.streamingAssetsPath+"/Languages");
+        var info = new DirectoryInfo(Application.streamingAssetsPath + "/Languages");
         List<TMP_Dropdown.OptionData> languages = new List<TMP_Dropdown.OptionData>();
-        foreach (FileInfo f in info.GetFiles()) {
+        foreach (FileInfo f in info.GetFiles())
+        {
             if (f.Name.EndsWith("pbmm"))
             {
                 TMP_Dropdown.OptionData option = new TMP_Dropdown.OptionData();
@@ -40,7 +42,7 @@ public class TranscripterScript : MonoBehaviour
         //textMeshPro.text = Python(@".\Assets\HelloWorld.py", "");
         //print(CMD("deepspeech", "--model "));
         //  System.Diagnostics.Process.Start("explorer.exe", "/select," + path);
-    //     ProcessAudioToText(@"Cari.wav");
+        //     ProcessAudioToText(@"Cari.wav");
         //print(CMD(@".\deepspeech.exe --model .\Languages\German.pbmm --scorer .\Languages\German.scorer --audio .\Cari.wav"));
     }
 
@@ -48,11 +50,12 @@ public class TranscripterScript : MonoBehaviour
     {
         cmd = new Process();
         cmd.StartInfo.FileName = "python.exe";
-        cmd.StartInfo.RedirectStandardInput = true;
+        // cmd.StartInfo.RedirectStandardInput = true;
         cmd.StartInfo.RedirectStandardOutput = true;
         cmd.StartInfo.RedirectStandardError = true;
         cmd.StartInfo.CreateNoWindow = true;
         cmd.StartInfo.UseShellExecute = false;
+        cmd.EnableRaisingEvents = true;
         cmd.Exited += (sender, args) =>
         {
             /*  tcs.SetResult(process.ExitCode);
@@ -60,17 +63,23 @@ public class TranscripterScript : MonoBehaviour
             PrintToOutput("Completed");
             // print("Completed"); 
             string errors = cmd.StandardError.ReadToEnd();
+            print("Is error null? " + string.IsNullOrEmpty(errors));
+            PrintToOutput("Is error null? " + string.IsNullOrEmpty(errors));
+
             if (!string.IsNullOrEmpty(errors))
                 PrintToOutput(errors);
             print(errors);
             string results = cmd.StandardOutput.ReadToEnd();
+            PrintToOutput("Is results null? " + string.IsNullOrEmpty(results));
+            print("Is results null? " + string.IsNullOrEmpty(results));
             PrintToOutput(results);
             print(results);
             loading.enabled = false;
-            cmd.StandardInput.Close();
+            //   cmd.StandardInput.Close();
         };
     }
-    public void ExplorerClick(string sender) {
+    public void ExplorerClick(string sender)
+    {
 
         StartCoroutine(ShowLoadDialogCoroutine(sender));
     }
@@ -102,20 +111,37 @@ public class TranscripterScript : MonoBehaviour
             //AudioClip clip = (AudioClip) Resources.Load(FileBrowser.Result[0]);
 
             //ProcessAudioToText($"\"{FileBrowser.Result[0]}\"");
+
             // Kevin Aenmey | https://stackoverflow.com/a/11122523
-            System.Reflection.FieldInfo field = GetType().GetField(sender);
-            if (field == null) PrintToOutput("InputField not found", true);
-            else {
-                TMP_InputField inputField = ((TMP_InputField) field.GetValue(this));
-                inputField.text = FileBrowser.Result[0];
+            if (sender == "saveButton")
+            {
+                PrintLogToFile(info.text, FileBrowser.Result[0]);
             }
-                
-                
-                
+            else
+            {
+                System.Reflection.FieldInfo field = GetType().GetField(sender);
+                if (field == null) PrintToOutput("InputField not found", true);
+                else
+                {
+                    TMP_InputField inputField = ((TMP_InputField)field.GetValue(this));
+                    inputField.text = FileBrowser.Result[0];
+                }
+            }
+
+
+
             //Python("\"\""+Application.streamingAssetsPath+"\\client.py\" --model German.pbmm --scorer German.scorer --audio \""+FileBrowser.Result[0]+"\"\"");
             //ProcessAudioToText(FileBrowser.Result[0]);
             // FileBrowserHelpers.CopyFile(FileBrowser.Result[0], destinationPath);
         }
+    }
+
+    public async Task PrintLogToFile(string text, string path=".")
+    {
+        print("path: "+path+", text: "+text);
+        File.WriteAllText($"\"{path}/log.txt\"", text);
+        print($"\"{path}/log.txt\"");
+        PrintToOutput("Successfully saved file at "+ (path != "." ? $"\"{path}/log.txt\"" : Application.dataPath+"/log.txt"));
     }
 
     public void ProcessAudioToText_Click()
@@ -125,18 +151,18 @@ public class TranscripterScript : MonoBehaviour
             ProcessAudioToText();
         else
             PrintToOutput("Audio path not selected", true);
-        
 
-        
+
+
     }
     void ProcessAudioToText()
     {
         loading.enabled = true;
-        
-        
+
+
         string command = $"\"{Application.streamingAssetsPath}/client.py\"";
         command += " --extended";
-        command += " --model "+ $"\"{Application.streamingAssetsPath}/Languages/German.pbmm\"";
+        command += " --model " + $"\"{Application.streamingAssetsPath}/Languages/German.pbmm\"";
         command += @" --scorer " + $"\"{Application.streamingAssetsPath}/Languages/German.scorer\"";
         command += " --audio " + $"\"{audioPath.text}\"";
         command += (!string.IsNullOrEmpty(outputPath.text) ? (" --output " + $"\"{outputPath.text}\"") : "");
@@ -151,14 +177,14 @@ public class TranscripterScript : MonoBehaviour
             PrintToOutput("Process successfully started");
         else
             PrintToOutput("Process could not be started", true);
-       // cmd.StandardInput.WriteLine(@"deepspeech --model .\Languages\German.pbmm --scorer .\Languages\German.scorer --audio " + clip);
-        cmd.StandardInput.Flush();
+        // cmd.StandardInput.WriteLine(@"deepspeech --model .\Languages\German.pbmm --scorer .\Languages\German.scorer --audio " + clip);
+        //  cmd.StandardInput.Flush();
         // svick | https://stackoverflow.com/a/10789196
-        cmd.EnableRaisingEvents = true;
 
-       
-       // cmd.WaitForExit(30000);
-       
+
+
+        // cmd.WaitForExit(30000);
+
         //return results;
     }
 
@@ -204,7 +230,7 @@ public class TranscripterScript : MonoBehaviour
         cmd.StartInfo.UseShellExecute = false;
         cmd.Start();
 
-        cmd.StandardInput.WriteLine("cd "+ Application.streamingAssetsPath);
+        cmd.StandardInput.WriteLine("cd " + Application.streamingAssetsPath);
         cmd.StandardInput.WriteLine(command);
         cmd.StandardInput.Flush();
         cmd.StandardInput.Close();
@@ -216,21 +242,22 @@ public class TranscripterScript : MonoBehaviour
         print("Aqui");
         return results;
     }
-     
-    public void PrintToOutput(string text, bool isError=false)
+
+    public void PrintToOutput(string text, bool isError = false)
     {
+        print("printing to output " + text);
         info.text += "\n" + (isError ? "<b><color=\"red\">" : "") + text + (isError ? "</color></b>" : "");
     }
 
 
     public void Test()
     {
-        PrintToOutput("Ninguna función por el momento");
+        PrintToOutput("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non nunc quis eros sollicitudin euismod. Curabitur commodo neque tortor, in elementum mi pulvinar et. Curabitur porttitor lacus augue, in aliquam nibh tempor ac. Fusce sed consequat leo. Quisque elementum justo ac ullamcorper tempor. Donec at lacus dolor. Vivamus ut purus ligula. Etiam vel eros a orci pulvinar iaculis. Aenean scelerisque malesuada mauris quis lobortis. Ut placerat imperdiet ante non iaculis. Nunc vel varius urna, sit amet mattis lacus. Morbi vestibulum aliquet nisi eget molestie. Donec a lectus eget metus ornare mollis. Aliquam eget turpis at risus imperdiet tristique. Donec pellentesque nec urna at malesuada. Phasellus eget sodales libero.\n\nDuis porttitor id elit et volutpat.Vivamus justo neque, sollicitudin at pellentesque nec, auctor id ipsum.Morbi hendrerit nunc eget massa euismod tristique.Aenean lacinia pharetra mollis.Integer eget sapien tristique, ultricies tortor et, accumsan enim.Duis lacus turpis, rhoncus eu risus a, convallis ornare dui.Praesent molestie pellentesque nisi ut lacinia.\n");
     }
 
     public bool CheckRegex(string text)
     {
-        Regex rgx = new Regex(regexValidName); 
+        Regex rgx = new Regex(regexValidName);
         return rgx.IsMatch(text);
     }
 

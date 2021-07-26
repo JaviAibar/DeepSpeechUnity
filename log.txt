@@ -1,0 +1,3 @@
+C:\Users\War zone\Desktop/
+Executed: "C:/Users/War zone/Documents/aa UPV tmp/TempFG/DeepSpeechUnity/Assets/StreamingAssets/client.py" --extended --model "C:/Users/War zone/Documents/aa UPV tmp/TempFG/DeepSpeechUnity/Assets/StreamingAssets/Languages/German.pbmm" --scorer "C:/Users/War zone/Documents/aa UPV tmp/TempFG/DeepSpeechUnity/Assets/StreamingAssets/Languages/German.scorer" --audio "C:/Users/War zone/Documents/aa UPV tmp/TempFG/DeepSpeechUnity/Assets/StreamingAssets/Cari.wav"
+Process successfully started

@@ -1,3 +1,0 @@
-linters:
-- pylint:
-    filefilter: ['+ *.py', '+ bin/*.py']
