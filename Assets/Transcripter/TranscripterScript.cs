@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using SimpleFileBrowser;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+using System;
 
 public class TranscripterScript : MonoBehaviour
 {
@@ -16,9 +16,14 @@ public class TranscripterScript : MonoBehaviour
     public Image loading;
     public TMP_InputField audioPath;
     public TMP_InputField outputPath;
-    public TMP_InputField name;
+    public TMP_InputField outputFilename;
     public GameObject fakeVideoPanel;
+    public GameObject advancedOptions;
+    public TMP_InputField alphaField;
+    public TMP_InputField betaField;
     public Toggle fakeVideoToggle;
+    private readonly ConfigFile defaultOptions = new ConfigFile(0.0001f, 0.25f, false);
+
     private string audioRegex = @"\.(3gp|aa|aac|act|aiff|alac|amr|ape|au|awb|dss|dvf|flac|gsm|iklax|ivs|m4a|m4b|m4p|mmf|mp3|mpc|msv|mpc|msv|nmf|ogg|oga|mogg|opus|ra|rm|raw|rf64|sln|tta|voc|vox|wav|wma|wv|webm|8svx|cda)";
     Process cmd;
     // Engineer | https://stackoverflow.com/a/11794507
@@ -26,7 +31,9 @@ public class TranscripterScript : MonoBehaviour
     void Start()
     {
         InitializeCMD();
-        audioPath.text = "C:/Users/War zone/Documents/aa UPV tmp/TempFG/DeepSpeechUnity/Assets/StreamingAssets/Cari.wav";
+        LoadValues();
+        Application.logMessageReceived += RedirectLogToInputField;
+        audioPath.text = Application.streamingAssetsPath+"/Cari.wav";
         FileBrowser.AddQuickLink("StreamingAssets", Application.streamingAssetsPath, null);
         var info = new DirectoryInfo(Application.streamingAssetsPath + "/Languages");
         List<TMP_Dropdown.OptionData> languages = new List<TMP_Dropdown.OptionData>();
@@ -35,12 +42,16 @@ public class TranscripterScript : MonoBehaviour
             if (f.Name.EndsWith("pbmm"))
             {
                 TMP_Dropdown.OptionData option = new TMP_Dropdown.OptionData();
-                option.text = f.Name.Split('.')[0];
-                //print(f.Name.Split('.')[0]);
-                languages.Add(option);
+                string langname = f.Name.Split('.')[0];
+                option.text = langname;
+                if (File.Exists(Application.streamingAssetsPath + "/Languages/"+langname + ".scorer"))
+                    languages.Add(option);
+                else
+                    PrintToOutput($"A model of {langname} language has been found but there's no scorer with the same name. Is the scorer missing or it have a different name?", true);
             }
         }
         dropDownLanguages.options = languages;
+        dropDownLanguages.SetValueWithoutNotify(1);
         //textMeshPro.text = Python(@".\Assets\HelloWorld.py", "");
         //print(CMD("deepspeech", "--model "));
         //  System.Diagnostics.Process.Start("explorer.exe", "/select," + path);
@@ -51,7 +62,7 @@ public class TranscripterScript : MonoBehaviour
     public void InitializeCMD()
     {
         cmd = new Process();
-        cmd.StartInfo.FileName = "python.exe";
+        cmd.StartInfo.FileName = "./python.exe";
         // cmd.StartInfo.RedirectStandardInput = true;
         cmd.StartInfo.RedirectStandardOutput = true;
         cmd.StartInfo.RedirectStandardError = true;
@@ -70,7 +81,7 @@ public class TranscripterScript : MonoBehaviour
             print("Is error null? " + string.IsNullOrEmpty(errors));
             PrintToOutput("Is error null? " + string.IsNullOrEmpty(errors));
 
-            if (!string.IsNullOrEmpty(errors))
+           // if (!string.IsNullOrEmpty(errors))
                 PrintToOutput(errors);
             print(errors);
             string results = cmd.StandardOutput.ReadToEnd();
@@ -81,10 +92,10 @@ public class TranscripterScript : MonoBehaviour
             loading.enabled = false;
             //   cmd.StandardInput.Close();
         };
+        PrintToOutput("CMD initialized successfully");
     }
     public void ExplorerClick(string sender)
     {
-
         StartCoroutine(ShowLoadDialogCoroutine(sender));
     }
 
@@ -98,13 +109,12 @@ public class TranscripterScript : MonoBehaviour
 
         // Dialog is closed
         // Print whether the user has selected some files/folders or cancelled the operation (FileBrowser.Success)
-        print(FileBrowser.Success);
 
         if (FileBrowser.Success)
         {
             // Print paths of the selected files (FileBrowser.Result) (null, if FileBrowser.Success is false)
-            for (int i = 0; i < FileBrowser.Result.Length; i++)
-                print(FileBrowser.Result[i]);
+           // for (int i = 0; i < FileBrowser.Result.Length; i++)
+            //    print(FileBrowser.Result[i]);
 
             // Read the bytes of the first file via FileBrowserHelpers
             // Contrary to File.ReadAllBytes, this function works on Android 10+, as well
@@ -146,7 +156,7 @@ public class TranscripterScript : MonoBehaviour
         }
     }
 
-    public async Task PrintLogToFile(string text, string path=".")
+    public void PrintLogToFile(string text, string path=".")
     {
         print("path: "+path+", text: "+text);
         File.WriteAllText($"\"{path}/log.txt\"", text);
@@ -157,26 +167,32 @@ public class TranscripterScript : MonoBehaviour
     public void ProcessAudioToText_Click()
     {
 
-        if (!string.IsNullOrEmpty(audioPath.text))
-            ProcessAudioToText();
-        else
+        if (string.IsNullOrEmpty(audioPath.text))
             PrintToOutput("Audio path not selected", true);
+        else if (!File.Exists(audioPath.text))
+        {
+            PrintToOutput(""+File.Exists(audioPath.text));
+            PrintToOutput(audioPath.text);
+            PrintToOutput("Audio file not found", true);
+        }
+        else
+            ProcessAudioToText();
     }
 
     void ProcessAudioToText()
     {
         loading.enabled = true;
-
-
-
-        string command = $"\"{Application.streamingAssetsPath}/client.py\"";
+        PrintToOutput(dropDownLanguages.itemText.text);
+        float alpha = string.IsNullOrEmpty(alphaField.text) ? defaultOptions.alpha : float.Parse(alphaField.text);
+        float beta = string.IsNullOrEmpty(betaField.text) ? defaultOptions.beta : float.Parse(betaField.text);
+        string command = $"\"{Application.streamingAssetsPath}/Dependencies/client.py\"";
         command += " --extended";
-        command += " --model " + $"\"{Application.streamingAssetsPath}/Languages/German.pbmm\"";
+        command += " --model " + $"\"{Application.streamingAssetsPath}/Languages/{dropDownLanguages.itemText.text}.pbmm\"";
         command += @" --scorer " + $"\"{Application.streamingAssetsPath}/Languages/German.scorer\"";
-        command += " --audio " + $"\"{audioPath.text}\"";
+        command += " --audio " + $"\"{audioPath.text}\" --lm_alpha {alpha.ToString().Replace(",",".")} --lm_beta {beta.ToString().Replace(",", ".")}";
         command += (!string.IsNullOrEmpty(outputPath.text) ? (" --output " + $"\"{outputPath.text}\"") : "");
-        command += (!string.IsNullOrEmpty(name.text) && CheckRegex(name.text, regexValidName) ? (" --srt_name " + name.text) : "");
-        PrintToOutput("Executed: " + command);
+        command += (!string.IsNullOrEmpty(outputFilename.text) && CheckRegex(outputFilename.text, regexValidName) ? (" --srt_name " + outputFilename.text) : "");
+        PrintToOutput("Executed: python " + command);
         cmd.StartInfo.Arguments = command;
         bool started = cmd.Start();
         if (started)
@@ -197,7 +213,7 @@ public class TranscripterScript : MonoBehaviour
         //return results;
     }
 
-    public string Python(string command)
+   /* public string Python(string command)
     {
         var psi = new ProcessStartInfo();
         psi.FileName = @"python.exe";
@@ -222,7 +238,7 @@ public class TranscripterScript : MonoBehaviour
         // print(errors);
         return results;
 
-    }
+    }*/
 
     public void GenerateFakeVideo()
     {
@@ -230,7 +246,7 @@ public class TranscripterScript : MonoBehaviour
     }
 
     // Credits Ogglas https://stackoverflow.com/a/32872174
-    public string CMD(string command)
+    /*public string CMD(string command)
     {
         var results = "";
         var errors = "";
@@ -253,21 +269,23 @@ public class TranscripterScript : MonoBehaviour
         if (!string.IsNullOrEmpty(errors))
             print(errors);
         results = cmd.StandardOutput.ReadToEnd();
-        print("Aqui");
+        //print("Aqui");
         return results;
-    }
+    }*/
 
     public void PrintToOutput(string text, bool isError = false)
     {
-        print("printing to output " + text);
-        info.text += "\n" + (isError ? "<b><color=\"red\">" : "") + text + (isError ? "</color></b>" : "");
+        //print("printing to output " + text);
+        info.text += "\n"  + text ;
+        //info.text += "\n" + (isError ? "<b><color=\"red\">" : "") + text + (isError ? "</color></b>" : "");
     }
 
 
     public void Test()
     {
         PrintToOutput("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non nunc quis eros sollicitudin euismod. Curabitur commodo neque tortor, in elementum mi pulvinar et. Curabitur porttitor lacus augue, in aliquam nibh tempor ac. Fusce sed consequat leo. Quisque elementum justo ac ullamcorper tempor. Donec at lacus dolor. Vivamus ut purus ligula. Etiam vel eros a orci pulvinar iaculis. Aenean scelerisque malesuada mauris quis lobortis. Ut placerat imperdiet ante non iaculis. Nunc vel varius urna, sit amet mattis lacus. Morbi vestibulum aliquet nisi eget molestie. Donec a lectus eget metus ornare mollis. Aliquam eget turpis at risus imperdiet tristique. Donec pellentesque nec urna at malesuada. Phasellus eget sodales libero.\n\nDuis porttitor id elit et volutpat.Vivamus justo neque, sollicitudin at pellentesque nec, auctor id ipsum.Morbi hendrerit nunc eget massa euismod tristique.Aenean lacinia pharetra mollis.Integer eget sapien tristique, ultricies tortor et, accumsan enim.Duis lacus turpis, rhoncus eu risus a, convallis ornare dui.Praesent molestie pellentesque nisi ut lacinia.\n");
-    }
+        //PrintToOutput("TEST ", true);
+            }
 
     public bool CheckRegex(string text, string regex)
     {
@@ -279,4 +297,71 @@ public class TranscripterScript : MonoBehaviour
     {
         info.text = "";
     }
+
+    public void ResetValuesToDefault()
+    {
+        // TODO: Are you sure? window
+        alphaField.text = "" + defaultOptions.alpha;
+        betaField.text = "" + defaultOptions.beta;
+        advancedOptions.SetActive(false);
+    }
+
+    public void LoadValues()
+    {
+        string filename = "config.json";
+        if (File.Exists(Application.persistentDataPath + "/" + filename))
+        {
+            string jsonString = File.ReadAllText(Application.persistentDataPath + "/" + filename);
+            ConfigFile configFile = JsonUtility.FromJson<ConfigFile>(jsonString);
+            alphaField.text = "" + configFile.alpha;
+            betaField.text = "" + configFile.beta;
+            advancedOptions.SetActive(configFile.advancedOptionsOpen);
+        }
+        else
+        {
+            ResetValuesToDefault();
+        }
+    }
+
+    public void SaveValues()
+    {
+    // TODO: Are you sure? window
+        string filename = "config.json";
+        ConfigFile configFile = new ConfigFile();
+        configFile.alpha = string.IsNullOrEmpty(alphaField.text) ? defaultOptions.alpha : float.Parse(alphaField.text);
+        configFile.beta = string.IsNullOrEmpty(betaField.text) ? defaultOptions.beta : float.Parse(betaField.text);
+        configFile.advancedOptionsOpen = advancedOptions.activeSelf;
+        string jsonString = JsonUtility.ToJson(configFile);
+        PrintToOutput(""+configFile.alpha);
+        PrintToOutput(jsonString);
+        File.WriteAllText(Application.persistentDataPath + "/"+filename, jsonString);
+        PrintToOutput("SI");
+    }
+
+    public void RedirectLogToInputField(string logString, string stackTrace, LogType type)
+    {
+       // print(type);
+        PrintToOutput(logString, type == LogType.Error || type == LogType.Exception);
+    }
+
+    public void SwitchAdvancedOptions()
+    {
+        if (advancedOptions.activeSelf) advancedOptions.SetActive(false);
+        else advancedOptions.SetActive(true);
+    }
+}
+
+[Serializable]
+public class ConfigFile
+{
+    public ConfigFile(float alpha, float beta, bool advOptsOpen)
+    {
+        this.alpha = alpha;
+        this.beta = beta;
+        this.advancedOptionsOpen = advOptsOpen;
+    }
+    public ConfigFile() { }
+    public float alpha;
+    public float beta;
+    public bool advancedOptionsOpen;
 }
