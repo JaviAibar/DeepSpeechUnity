@@ -6,3 +6,5 @@ Once downloaded, you need to download a Tensorflow model pretrained in the langu
 This project is tested using Aashish Agarwal's model which is wonderful and free. If you're using this software for transcripting from german I encourage you to download his model here https://github.com/AASHISHAG/deepspeech-german
 
 In regard of the advance options, the ones selected as default come from Aashish Agarwal's flags.txt file which describes his selections when training, if using another model I recommend search for this kind of information in the place you founded and save changes.
+
+This project is licensed Apache Public License 2.0 and is based in Mozilla's DeepSpeech
