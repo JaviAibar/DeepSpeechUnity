@@ -1,4 +1,8 @@
 # DeepSpeechUnity
+This project aims in transcripting either audio or video generating a SubRip video which is able to be read by most players.
+
+# Usage
+In order to use this software, you must obtain a language and acustic Tensorflow model. You may either find both on the Internet or train them by yourself.
 Once downloaded, you need to download a Tensorflow model pretrained in the language of your need (or train one yourself) and place it inside of a folder named Languages in DeepSpeechUnity/Transcripter_Data/StreamingAssets.
 *  German.pbmm -> DeepSpeechUnity/Transcripter_Data/StreamingAssets/Languages/
 *  German.scorer -> DeepSpeechUnity/Transcripter_Data/StreamingAssets/Languages/
