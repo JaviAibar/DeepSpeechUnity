@@ -1,1 +1,0 @@
-ffmpeg -framerate 1 -i "UPV fondo blanco.png" -i Cari.wav -t 1500 -s 1024x768 -pix_fmt yuv420p -r 30 Cari.mp4
