@@ -3,6 +3,8 @@
 [Oo]bj/
 [Bb]uild/
 [Bb]uilds/
+[Aa]ssets/StreamingAssets/bckup*
+[Aa]ssets/StreamingAssets/Languages/
 Assets/AssetStoreTools*
 
 # Visual Studio cache directory
