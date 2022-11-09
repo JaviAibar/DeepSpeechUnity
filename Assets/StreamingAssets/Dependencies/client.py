@@ -8,7 +8,10 @@ import shlex
 import subprocess
 import sys
 import wave
+import ffmpeg
 import json
+import os
+from pathlib import Path
 
 from deepspeech import Model, version
 from timeit import default_timer as timer
@@ -19,7 +22,7 @@ except ImportError:
     from pipes import quote
 
 export_json = False
-debug_mode = True
+debug_mode = False
 def print_debug(text):
     if debug_mode:
         print(text)
@@ -27,9 +30,13 @@ def print_debug(text):
 def token_to_string(token):
     return "Text: " + (token.text if token.text else "\" \"") + ", start_time: "+str(token.start_time)+", timestep: "+str(token.timestep)
 
+
 print("Executed client.py")
 def convert_samplerate(audio_path, desired_sample_rate):
-    sox_cmd = 'sox {} --type raw --bits 16 --channels 1 --rate {} --encoding signed-integer --endian little --compression 0.0 --no-dither - '.format(quote(audio_path), desired_sample_rate)
+    prev_path = os.getcwd()
+    mono_path = get_original_name(audio_path)
+    os.chdir("./sox")
+    sox_cmd = "\'"+str(os.getcwd()).replace("/", "\\")+'\sox.exe\' {} --type raw --bits 16 --channels 1 --rate {} --encoding signed-integer --endian little --compression 0.0 --no-dither - '.format(quote(audio_path.replace("/", "\\")), desired_sample_rate)
     try:
         output = subprocess.check_output(shlex.split(sox_cmd), stderr=subprocess.PIPE)
     except subprocess.CalledProcessError as e:
@@ -37,6 +44,7 @@ def convert_samplerate(audio_path, desired_sample_rate):
     except OSError as e:
         raise OSError(e.errno, 'SoX not found, use {}hz files or install it: {}'.format(desired_sample_rate, e.strerror))
 
+    os.chdir(prev_path)
     return desired_sample_rate, np.frombuffer(output, np.int16)
 
 
@@ -95,11 +103,6 @@ class VersionAction(argparse.Action):
         print('DeepSpeech ', version())
         exit(0)
 
-def time_format(seconds):
-    mon, sec = divmod(seconds, 60)
-    hr, mon = divmod(mon, 60)
-    return ("{0:02.0f}:{1:02.0f}:{2:02.3f}".format(hr, mon, sec)).replace(".", ",")
-
 
 def main():
     parser = argparse.ArgumentParser(description='Running DeepSpeech inference.')
@@ -129,6 +132,10 @@ def main():
                         help='Output folder path where the srt file will be saved.')
     parser.add_argument('--srt_name', type=str,
                         help='Name the output srt file will have.')
+    parser.add_argument('--fake_video', type=str,
+                        help='It will create a video using subprocess and an image.')
+    parser.add_argument('--video_to_audio', type=str,
+                        help='It will create a video using subprocess and an image.')
     args = parser.parse_args()
 
     print('Loading model from file {}'.format(args.model), file=sys.stderr)
@@ -160,9 +167,15 @@ def main():
             word,boost = word_boost.split(':')
             ds.addHotWord(word,float(boost))
 
+    if args.audio[-3:] != "wav":
+        print("Video detectect, extracting audio file")
+        args.audio = get_audio_from_file(args.audio)
+
     fin = wave.open(args.audio, 'rb')
     fs_orig = fin.getframerate()
-    if fs_orig != desired_sample_rate:
+    is_mono = fin.getnchannels() == 1
+
+    if fs_orig != desired_sample_rate or not is_mono:
         print('Warning: original sample rate ({}) is different than {}hz. Resampling might produce erratic speech recognition.'.format(fs_orig, desired_sample_rate), file=sys.stderr)
         fs_new, audio = convert_samplerate(args.audio, desired_sample_rate)
     else:
@@ -178,99 +191,32 @@ def main():
         #metadata = ds.sttWithMetadata(audio, 1)
         #print("metadata")
         #print(metadata)
+        #for id, transcript in metadata.transcripts:
+        #    print(i)
+        #    print(transcript.confidence)
+        #    print(words_from_candidate_transcript(transcript))
         #metadata = metadata.transcripts[0].tokens
-        metadata = ds.sttWithMetadata(audio, 1).transcripts[0].tokens
+        obj = ds.sttWithMetadata(audio, 1)
+        metadata = obj.transcripts[0].tokens
         #################################################
-        index = 1
-        threshold_soft = 0.05 # if exceed and possible, next line
-        threshold_hard = 0.7  # if exceed, next block
-        offset = 2
-        limit_characters_line = 35
-        #s = ""
-        word = ""
-        line = ["", ""]
-        res = ""
-        #new_block = True
-        new_word = True
-        prev = metadata[0].start_time
-        block_start_time = metadata[0].start_time
-        block_end_time = 0
-        before_read_time = metadata[0].start_time
-        after_read_time = 0
-        line_count = 0 # Each block has a maximum of 2 lines
-        data = []
-        for id, t in enumerate(metadata):
-            if export_json:
-                data.append({"text":t.text, "start_time": t.start_time, "timestep": t.timestep})
-            #block_end_time = t.start_time
-            #if new_block:
-            #    before_read_time = t.start_time
-            #    new_block = False
-            if new_word:
-                print_debug("\nNew word started at "+str(t.start_time))
-                before_read_time = t.start_time
-                new_word = False
+        if len(metadata) == 0:
+            sys.exit("Sorry, this audio seems unintelligible or too short")
 
-            #if id > 23 and id < 90: print(t.text, t.start_time)
-
-            # As we didn't found an space nor the space is long, we're still with the same word
-            if t.text != " " and t.start_time - prev < threshold_hard: # and t.start_time - prev < threshold_hard:
-                print_debug("Added letter to the word " + token_to_string(t))
-                prev = t.start_time
-                word += t.text
-            # Word change
-            else:
-                if t.start_time - prev >= threshold_hard: # Silence greater than threshold
-                    print_debug("There was a great silence: "+str(t.start_time - prev)+", it shouldn't be greater than "+str(threshold_hard)+" to keep with the previous LINE")
-                    line[line_count] += word
-                    res += str(index) + "\n" + time_format(block_start_time) +" --> "+ time_format(prev) + "\n" + line[0] + "\n" + line[1]+"\n\n"
-                    print_debug("We save the already stated word with its timestamp\n")
-
-                    prev = t.start_time
-                    block_start_time = t.start_time
-                    line_count = 0
-                    line = ["", ""]
-                    word = t.text
-                    #new_block = True
-                    index += 1
-                else: # word read
-                    #after_read_time = t.start_time
-                    print_debug("Complete read word: " + word)
-                    #print("id; ", id, "len meta: ", len(metadata))
-                    if len(line[line_count]) + len(word) > limit_characters_line: # Characters per line reached (new line or new block required)
-                        if line_count == 0 : # and metadata[id+1].start_time - t.start_time < threshold_hard
-                            print_debug("Line reached its limit, Saving the word in the next LINE")
-                            line_count += 1
-                            line[line_count] += word + " "
-                            word = ""
-                            print_debug("Lines result so far is:\n\tLinea 1: " +line[0]+ "\nLinea 2: "+line[1]+"\n")
-                        else: # We're on the second line, therefore, we need a new block
-                            print_debug("Line reached its limit, but we're at the second line, so we need a new BLOCK")
-                            print_debug("Lines result so far is:\n\tLinea 1: " +str(line[0])+ "\nLinea 2: " + line[1])
-                            print_debug("We save both line to the final result\n")
-                            line_count = 0
-                            res += str(index) + "\n" + time_format(block_start_time) +" --> "+ time_format(after_read_time) + "\n" + line[0] + "\n" + line[1]+"\n\n"
-                            block_start_time = before_read_time
-                            line = ["", ""]
-                            line[line_count] = word + " "
-                            word = ""
-                            #new_block = True
-                            index += 1
-
-                    else: # trivial case: we can save the word and continue reading.
-                        print_debug("Finished reading word: " + word)
-                        line[line_count] += word + " "
-                        word = ""
-                        new_word = True
-                        after_read_time = t.start_time
-        line[line_count] += word
-        res += str(index) + "\n" + time_format(block_start_time) +" --> "+ time_format(metadata[len(metadata)-1].start_time) + "\n" + line[0] + "\n" + line[1]+"\n\n"
+        res = process_captions(metadata)
         print_debug("Finished reading, the final result:")
         print_debug(res)
         #f = open("output.srt", "w")
-        f = open(args.audio[:-3]+"srt", "w")
+
+        path_segmented = get_original_name(args.audio)
+        path_to_save = generate_path(path_segmented, args.output, args.srt_name)
+
+        if os.path.exists(path_to_save):
+            os.remove(path_to_save)
+        path_to_save = path_to_save[1:len(path_to_save)] if (path_to_save[0] == '/') else path_to_save
+        f = open(path_to_save, "w")
         f.write(res)
         f.close()
+        print("Successfully saved in "+path_to_save)
         if export_json:
             jsonfile = open("results.json", "w")
             json.dumps(data, jsonfile)
@@ -286,6 +232,135 @@ def main():
     inference_end = timer() - inference_start
     print('Inference took %0.3fs for %0.3fs audio file.' % (inference_end, audio_length), file=sys.stderr)
 
+
+def process_captions(metadata):
+    index = 1
+    threshold_soft = 0.05 # if exceed and possible, next line
+    threshold_hard = 0.7  # if exceed, next block
+    offset = 2
+    limit_characters_line = 35
+    #s = ""
+    word = ""
+    line = ["", ""]
+    res = ""
+    #new_block = True
+    new_word = True
+    prev = metadata[0].start_time
+    block_start_time = metadata[0].start_time
+    block_end_time = 0
+    before_read_time = metadata[0].start_time
+    after_read_time = 0
+    line_count = 0 # Each block has a maximum of 2 lines
+    data = []
+    for id, t in enumerate(metadata):
+        if export_json:
+            data.append({"text":t.text, "start_time": t.start_time, "timestep": t.timestep})
+        #block_end_time = t.start_time
+        #if new_block:
+        #    before_read_time = t.start_time
+        #    new_block = False
+        if new_word:
+            print_debug("\nNew word started at "+str(t.start_time))
+            before_read_time = t.start_time
+            new_word = False
+
+        #if id > 23 and id < 90: print(t.text, t.start_time)
+
+        # As we didn't found an space nor the space is long, we're still with the same word
+        if t.text != " " and t.start_time - prev < threshold_hard: # and t.start_time - prev < threshold_hard:
+            print_debug("Added letter to the word " + token_to_string(t))
+            prev = t.start_time
+            word += t.text
+        # Word change
+        else:
+            if t.start_time - prev >= threshold_hard: # Silence greater than threshold
+                print_debug("There was a great silence: "+str(t.start_time - prev)+", it shouldn't be greater than "+str(threshold_hard)+" to keep with the previous LINE")
+                line[line_count] += word
+                res += str(index) + "\n" + time_format(block_start_time) +" --> "+ time_format(prev) + "\n" + line[0] + "\n" + line[1]+"\n\n"
+                print_debug("We save the already stated word with its timestamp\n")
+
+                prev = t.start_time
+                block_start_time = t.start_time
+                line_count = 0
+                line = ["", ""]
+                word = t.text
+                #new_block = True
+                index += 1
+            else: # word read
+                #after_read_time = t.start_time
+                print_debug("Complete read word: " + word)
+                #print("id; ", id, "len meta: ", len(metadata))
+                if len(line[line_count]) + len(word) > limit_characters_line: # Characters per line reached (new line or new block required)
+                    if line_count == 0 : # and metadata[id+1].start_time - t.start_time < threshold_hard
+                        print_debug("Line reached its limit, Saving the word in the next LINE")
+                        line_count += 1
+                        line[line_count] += word + " "
+                        word = ""
+                        print_debug("Lines result so far is:\n\tLinea 1: " +line[0]+ "\nLinea 2: "+line[1]+"\n")
+                    else: # We're on the second line, therefore, we need a new block
+                        print_debug("Line reached its limit, but we're at the second line, so we need a new BLOCK")
+                        print_debug("Lines result so far is:\n\tLinea 1: " +str(line[0])+ "\nLinea 2: " + line[1])
+                        print_debug("We save both line to the final result\n")
+                        line_count = 0
+                        res += str(index) + "\n" + time_format(block_start_time) +" --> "+ time_format(after_read_time) + "\n" + line[0] + "\n" + line[1]+"\n\n"
+                        block_start_time = before_read_time
+                        line = ["", ""]
+                        line[line_count] = word + " "
+                        word = ""
+                        #new_block = True
+                        index += 1
+
+                else: # trivial case: we can save the word and continue reading.
+                    print_debug("Finished reading word: " + word)
+                    line[line_count] += word + " "
+                    word = ""
+                    new_word = True
+                    after_read_time = t.start_time
+    line[line_count] += word
+    res += str(index) + "\n" + time_format(block_start_time) +" --> "+ time_format(metadata[len(metadata)-1].start_time) + "\n" + line[0] + "\n" + line[1]+"\n\n"
+    return res
+
+def time_format(seconds):
+    mon, sec = divmod(seconds, 60)
+    hr, mon = divmod(mon, 60)
+    return ("{0:02.0f}:{1:02.0f}:{2:0>6.3f}".format(hr, mon, sec)).replace(".", ",")
+
+def generate_path(path_segmented, output_path, output_name):
+    if output_path:
+        path_to_save = output_path
+    else:
+        path_to_save = path_segmented[0]
+
+    if output_name:
+        path_to_save = path_to_save + "/" + (output_name if output_name[-3:] == "srt" else output_name + ".srt")
+    else:
+        path_to_save = path_to_save + "/" + path_segmented[1] + ".srt"
+    return path_to_save
+
+def get_original_name(original_path):
+    pathFragms = original_path.split("/")
+    fileName = pathFragms[len(pathFragms)-1].split(".")[0]
+    pathFragms.pop()
+    return ["/".join(pathFragms), fileName]
+
+def get_audio_from_file(audio_path):
+    original_path = get_original_name(audio_path)
+    new_path = original_path[0] + "/" + original_path[1] + ".wav"
+    stream = ffmpeg.input(audio_path)
+    stream = ffmpeg.output(stream.audio, new_path, ar=16000, ac=1)
+    stream = ffmpeg.overwrite_output(stream)
+    ffmpeg.run(stream)
+    return new_path
+
+def prueba():
+    print("esteeee  "+str(os.getcwd()))
+
+    print("esteeee2  "+str(os.getcwd()))
+
+    stream = ffmpeg.input('test.mp4')
+    stream = ffmpeg.output(stream.audio, 'test.wav', ar=16000)
+    stream = ffmpeg.overwrite_output(stream)
+    ffmpeg.run(stream)
 
 if __name__ == '__main__':
     main()
