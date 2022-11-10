@@ -29,6 +29,7 @@ public class TranscripterScript : MonoBehaviour
     public Toggle fakeVideoToggle;
     public TMP_Dropdown fakeBackgroundDropDown;
     public Scrollbar scroll;
+    public bool ffmpegNotPresent;
 
     public readonly ConfigFile defaultOptions = new ConfigFile(0.931289039105002f, 1.1834137581510284f, 1024);
     private string audioRegex = @"\.(3gp|aa|aac|act|aiff|alac|amr|ape|au|awb|dss|dvf|flac|gsm|iklax|ivs|m4a|m4b|m4p|mmf|mp3|mpc|msv|mpc|msv|nmf|ogg|oga|mogg|opus|ra|rm|raw|rf64|sln|tta|voc|vox|wav|wma|wv|webm|8svx|cda)$";
@@ -47,7 +48,6 @@ public class TranscripterScript : MonoBehaviour
     {
         InitializeCMD();
         InitializeFFMPEGCMD();
-
     }
     private void OnDisable()
     {
@@ -106,20 +106,41 @@ public class TranscripterScript : MonoBehaviour
     public void InitializeFFMPEGCMD()
     {
         ffmpegCmd = new Process();
-        ffmpegCmd.StartInfo.FileName = Application.streamingAssetsPath + "/Dependencies/ffmpeg.exe";
+        string ffmpegPath = Application.streamingAssetsPath + "/Dependencies/ffmpeg.exe";
+        ffmpegPath = (File.Exists(ffmpegPath)) ? ffmpegPath : "ffmpeg.exe";
+        ffmpegCmd.StartInfo.FileName = ffmpegPath;
+        ffmpegCmd.StartInfo.Arguments = "-version";
         //cmd.StartInfo.FileName = "./Dependencies/python.exe";
         ffmpegCmd.StartInfo.RedirectStandardOutput = true;
         ffmpegCmd.StartInfo.RedirectStandardError = true;
         ffmpegCmd.StartInfo.CreateNoWindow = true;
         ffmpegCmd.StartInfo.UseShellExecute = false;
         ffmpegCmd.EnableRaisingEvents = true;
-
-        /* cmd.Exited += (sender, args) =>
+/*
+         cmd.Exited += (sender, args) =>
          {
-             PrintToOutput("sender "+sender);
-             //EjecucionSalida();
+             string errors = cmd.StandardError.ReadToEnd();
+             string results = cmd.StandardOutput.ReadToEnd();
+             PrintToOutput($"errors:\n\t{errors}\n\nResults\n\t{results}");
+             scroll.value = scroll.value;
          };*/
+        try
+        {
+            bool ejecutado = ffmpegCmd.Start();
+            ffmpegCmd.WaitForExit();
+            ffmpegNotPresent = false;
+        } catch(Exception e)
+        {
+            FfmpegNotFound();
+        }
         ffmpegCmd.Exited += new EventHandler(OutputExecution);
+    }
+
+    public void FfmpegNotFound()
+    {
+        ffmpegNotPresent = true;
+        PrintToOutput("FFMPEG is not in the Dependencies folder nor installed in the system. Please, fix it to be able to use this application.", LogType.Exception);
+        return;
     }
     public void ExplorerClick(string sender)
     {
@@ -205,6 +226,7 @@ public class TranscripterScript : MonoBehaviour
 
     public void ProcessAudioToText_Click()
     {
+        if (ffmpegNotPresent) FfmpegNotFound();
         if (string.IsNullOrEmpty(audioPath.text))
         {
             PrintToOutput("Audio path not selected", LogType.Error);
