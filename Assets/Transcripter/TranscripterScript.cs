@@ -12,58 +12,106 @@ using System.Linq;
 
 public class TranscripterScript : MonoBehaviour
 {
-    public TMP_InputField info;
-    //public InputField info;
+    // GameObjects
+    [Header("Header")]
     public TMP_Dropdown dropDownLanguages;
-    public GameObject loading;
     public TMP_InputField audioPath;
     public TMP_InputField outputPathField;
     public TMP_InputField outputFilename;
     public GameObject fakeVideoPanel;
+    public Toggle fakeVideoToggle;
+    public TMP_Dropdown fakeBackgroundDropDown;
+    public Toggle verbose;
+
+    [Header("Body")]
+    public TMP_InputField info;
+    //public InputField info;
+    public GameObject loading;
+    public RectTransform outputPanel;
+    public Scrollbar scroll;
+
+    [Header("Footer")]
     public GameObject advancedOptions;
     public RectTransform advancedOption;
-    public RectTransform outputPanel;
     public TMP_InputField alphaField;
     public TMP_InputField betaField;
     public TMP_InputField beamWidthField;
-    public Toggle fakeVideoToggle;
-    public TMP_Dropdown fakeBackgroundDropDown;
-    public Scrollbar scroll;
-    public bool ffmpegNotPresent;
+
 
     public readonly ConfigFile defaultOptions = new ConfigFile(0.931289039105002f, 1.1834137581510284f, 1024);
     private string audioRegex = @"\.(3gp|aa|aac|act|aiff|alac|amr|ape|au|awb|dss|dvf|flac|gsm|iklax|ivs|m4a|m4b|m4p|mmf|mp3|mpc|msv|mpc|msv|nmf|ogg|oga|mogg|opus|ra|rm|raw|rf64|sln|tta|voc|vox|wav|wma|wv|webm|8svx|cda)$";
+    private bool ffmpegNotPresent;
+    private bool noLanguageModelPresent;
 
-    Process cmd;
+    List<Process> cmds;
+    List<string> cmdInfos; // Probably changing to another type of data to store more info
     public Process Cmd { get; }
-    Process ffmpegCmd;
+    List<Process> ffmpegCmds;
     [SerializeField] private string fakeVideoWhiteBackground;
     [SerializeField] private string fakeVideoBlackBackground;
 
     // Engineer | https://stackoverflow.com/a/11794507
     string regexValidName = @"^[\w\-. ]+$";
 
-
     private void OnEnable()
     {
-        InitializeCMD();
-        InitializeFFMPEGCMD();
+        cmds = new List<Process>();
+        cmdInfos = new List<string>();
+        ffmpegCmds = new List<Process>();
+        scroll = FindObjectOfType<Scrollbar>();
+        CheckFFMPEG();
+        CheckLanguageModelsAndFillDropDown();
     }
-    private void OnDisable()
+
+    private void CheckFFMPEG()
     {
-        cmd.Exited -= new EventHandler(OutputExecution);
-        ffmpegCmd.Exited -= new EventHandler(OutputExecution);
+        Process tmpProcess = new Process();
+        string ffmpegPath = Application.streamingAssetsPath + "/Dependencies/ffmpeg.exe";
+        ffmpegPath = (File.Exists(ffmpegPath)) ? ffmpegPath : "ffmpeg.exe";
+        tmpProcess.StartInfo.FileName = ffmpegPath;
+        tmpProcess.StartInfo.Arguments = "-version";
+        //cmd.StartInfo.FileName = "./Dependencies/python.exe";
+        tmpProcess.StartInfo.RedirectStandardOutput = true;
+        tmpProcess.StartInfo.RedirectStandardError = true;
+        tmpProcess.StartInfo.CreateNoWindow = true;
+        tmpProcess.StartInfo.UseShellExecute = false;
+        tmpProcess.EnableRaisingEvents = true;
+        try
+        {
+            bool ejecutado = tmpProcess.Start();
+            tmpProcess.WaitForExit();
+            ffmpegNotPresent = false;
+        }
+        catch (Exception e)
+        {
+            ffmpegNotPresent = true;
+            FfmpegNotFound();
+        }
+        tmpProcess.Exited += new EventHandler(OutputExecution);
     }
-    void Start()
+
+    private void ThrowLanguagesModelsError()
     {
-        fakeBackgroundDropDown.options = new List<TMP_Dropdown.OptionData>() {
-            new TMP_Dropdown.OptionData("Dark Background"),
-            new TMP_Dropdown.OptionData("Light Background")
-        };
-        LoadValues();
-        Application.logMessageReceived += RedirectLogToInputField;
-        FileBrowser.AddQuickLink("StreamingAssets", Application.streamingAssetsPath, null);
-        FileBrowser.AddQuickLink("Videos", Environment.GetFolderPath(Environment.SpecialFolder.MyVideos), null);
+       PrintToOutput($"Fatal error. There is no language model detected in folder {Application.streamingAssetsPath}/Languages. It should be composed of two big files: .pbmm and .scorer. Please add one language model and restart the aplication.", LogType.Exception);
+        return;
+    }
+
+    private void CheckLanguageModelsAndFillDropDown()
+    {
+        FileInfo[] files = new DirectoryInfo(Application.streamingAssetsPath + "/Languages").GetFiles();
+        noLanguageModelPresent = !(files.Where(e => e.Name.EndsWith("pbmm")).Count() > 0 && files.Where(e => e.Name.EndsWith("scorer")).Count() > 0);
+        if (noLanguageModelPresent)
+        {
+            ThrowLanguagesModelsError();
+            return;
+        } else
+        {
+            FillLanguageDropDown();
+        }
+    }
+
+    public void FillLanguageDropDown()
+    {
         var info = new DirectoryInfo(Application.streamingAssetsPath + "/Languages");
         List<TMP_Dropdown.OptionData> languages = new List<TMP_Dropdown.OptionData>();
         foreach (FileInfo f in info.GetFiles())
@@ -81,59 +129,54 @@ public class TranscripterScript : MonoBehaviour
         }
         dropDownLanguages.options = languages;
         dropDownLanguages.SetValueWithoutNotify(1);
-        // SwitchAdvancedOptions();
     }
 
-    public void InitializeCMD()
+    void Start()
     {
-        cmd = new Process();
-        cmd.StartInfo.FileName = Application.streamingAssetsPath + "/Dependencies/python.exe";
-        //cmd.StartInfo.FileName = "./Dependencies/python.exe";
-        cmd.StartInfo.RedirectStandardOutput = true;
-        cmd.StartInfo.RedirectStandardError = true;
-        cmd.StartInfo.CreateNoWindow = true;
-        cmd.StartInfo.UseShellExecute = false;
-        cmd.EnableRaisingEvents = true;
-
-        /* cmd.Exited += (sender, args) =>
-         {
-             PrintToOutput("sender "+sender);
-             //EjecucionSalida();
-         };*/
-        cmd.Exited += new EventHandler(OutputExecution);
+        fakeBackgroundDropDown.options = new List<TMP_Dropdown.OptionData>() {
+            new TMP_Dropdown.OptionData("Dark Background"),
+            new TMP_Dropdown.OptionData("Light Background")
+        };
+        LoadValues();
+        Application.logMessageReceived += RedirectLogToInputField;
+        FileBrowser.AddQuickLink("StreamingAssets", Application.streamingAssetsPath, null);
+        FileBrowser.AddQuickLink("Videos", Environment.GetFolderPath(Environment.SpecialFolder.MyVideos), null);
     }
 
-    public void InitializeFFMPEGCMD()
+    /// <summary>
+    /// Creates a new Process instances and returns its position in the list
+    /// </summary>
+    /// <returns></returns>
+    public int InitializeCMD()
     {
-        ffmpegCmd = new Process();
+        Process newProcess = new Process();
+        newProcess.StartInfo.FileName = Application.streamingAssetsPath + "/Dependencies/python.exe";
+        newProcess.StartInfo.RedirectStandardOutput = true;
+        newProcess.StartInfo.RedirectStandardError = true;
+        newProcess.StartInfo.CreateNoWindow = true;
+        newProcess.StartInfo.UseShellExecute = false;
+        newProcess.EnableRaisingEvents = true;
+        newProcess.Exited += new EventHandler(OutputExecution);
+        cmds.Add(newProcess);
+        return cmds.Count - 1;
+    }
+
+    public int InitializeFFMPEGCMD()
+    {
+        Process newffmpegCmd = new Process();
         string ffmpegPath = Application.streamingAssetsPath + "/Dependencies/ffmpeg.exe";
         ffmpegPath = (File.Exists(ffmpegPath)) ? ffmpegPath : "ffmpeg.exe";
-        ffmpegCmd.StartInfo.FileName = ffmpegPath;
-        ffmpegCmd.StartInfo.Arguments = "-version";
-        //cmd.StartInfo.FileName = "./Dependencies/python.exe";
-        ffmpegCmd.StartInfo.RedirectStandardOutput = true;
-        ffmpegCmd.StartInfo.RedirectStandardError = true;
-        ffmpegCmd.StartInfo.CreateNoWindow = true;
-        ffmpegCmd.StartInfo.UseShellExecute = false;
-        ffmpegCmd.EnableRaisingEvents = true;
-/*
-         cmd.Exited += (sender, args) =>
-         {
-             string errors = cmd.StandardError.ReadToEnd();
-             string results = cmd.StandardOutput.ReadToEnd();
-             PrintToOutput($"errors:\n\t{errors}\n\nResults\n\t{results}");
-             scroll.value = scroll.value;
-         };*/
-        try
-        {
-            bool ejecutado = ffmpegCmd.Start();
-            ffmpegCmd.WaitForExit();
-            ffmpegNotPresent = false;
-        } catch(Exception e)
-        {
-            FfmpegNotFound();
-        }
-        ffmpegCmd.Exited += new EventHandler(OutputExecution);
+        newffmpegCmd.StartInfo.FileName = ffmpegPath;
+        newffmpegCmd.StartInfo.RedirectStandardOutput = true;
+        newffmpegCmd.StartInfo.RedirectStandardError = true;
+        newffmpegCmd.StartInfo.CreateNoWindow = true;
+        newffmpegCmd.StartInfo.UseShellExecute = false;
+        newffmpegCmd.EnableRaisingEvents = true;
+
+        newffmpegCmd.Exited += new EventHandler(OutputExecution);
+
+        ffmpegCmds.Add(newffmpegCmd);
+        return ffmpegCmds.Count - 1;
     }
 
     public void FfmpegNotFound()
@@ -149,17 +192,18 @@ public class TranscripterScript : MonoBehaviour
 
     public void OutputExecution(object sender, EventArgs e)
     {
-        print("Output");
         loading.SetActive(false);
-        //PrintToOutput("Transcription completed");
-        string errors = cmd.StandardError.ReadToEnd();
-        //if (!string.IsNullOrEmpty(errors))
-        //PrintToOutput("errors\n"+errors);
-        string results = cmd.StandardOutput.ReadToEnd();
-        print("Transcription completed" + "\n\n" + errors + "\n\n" + results);
+        Process process = ((Process)sender);
+        string errors = process.StandardError.ReadToEnd();
+        string results = process.StandardOutput.ReadToEnd();
+        int cmdID = cmds.FindIndex(e => e.Id == process.Id);
+        print($"Transcription of file {cmdID} ({cmdInfos[cmdID]}) is completed" + "\n\n" + errors + "\n\n" + results);
         PrintToOutput("Transcription completed" + "\n\n" + errors + "\n\n" + results);
         scroll.value = scroll.value;
-        //print(loading);
+        cmds.RemoveAt(cmdID);
+        cmdInfos.RemoveAt(cmdID);
+
+        if (cmds.Count == 0) PrintToOutput("All the files transcripted!");
     }
 
     public void ExplorerSaveClick(string sender)
@@ -226,7 +270,8 @@ public class TranscripterScript : MonoBehaviour
 
     public void ProcessAudioToText_Click()
     {
-        if (ffmpegNotPresent) FfmpegNotFound();
+        if (noLanguageModelPresent) CheckLanguageModelsAndFillDropDown();
+        if (ffmpegNotPresent) CheckFFMPEG();
         if (string.IsNullOrEmpty(audioPath.text))
         {
             PrintToOutput("Audio path not selected", LogType.Error);
@@ -245,24 +290,21 @@ public class TranscripterScript : MonoBehaviour
             if (attr.HasFlag(FileAttributes.Directory))
             {
                 List<string> files = Directory.GetFiles(audioPath.text, "*.*", SearchOption.TopDirectoryOnly).ToList();
-                //files.ForEach(e => ProcessAudioToText(e));
                 files = files.Where(e => CheckRegex(e, audioRegex)).ToList();
                 files.ForEach(e => ProcessAudioToText(e));
             }
 
             else
                 ProcessAudioToText(audioPath.text);
-
-
-
         }
-
     }
 
     void ProcessAudioToText(string fileName)
     {
+        
+        cmdInfos.Add(Path.GetFileName(fileName));
         string langSelected = dropDownLanguages.options[dropDownLanguages.value].text;
-        print("Language selected: " + langSelected + "\n");
+        PrintToOutput("Language selected: " + langSelected + "\n");
         loading.SetActive(true);
         float alpha = string.IsNullOrEmpty(alphaField.text) ? defaultOptions.alpha : float.Parse(alphaField.text);
         float beta = string.IsNullOrEmpty(betaField.text) ? defaultOptions.beta : float.Parse(betaField.text);
@@ -275,30 +317,27 @@ public class TranscripterScript : MonoBehaviour
         command += " --beam_width " + beamWidth.ToString().Replace(",", ".");
         command += (!string.IsNullOrEmpty(outputPathField.text) ? (" --output " + $"\"{outputPathField.text.Replace("\\", "/")}\"") : "");
         command += (!string.IsNullOrEmpty(outputFilename.text) && CheckRegex(outputFilename.text, regexValidName) ? (" --srt_name " + outputFilename.text) : "");
-        PrintToOutput($"Executed: \"{Application.streamingAssetsPath}/Dependencies/python.exe\" " + command + "\n");
-        cmd.StartInfo.Arguments = command;
+        if (verbose.isOn) PrintToOutput($"Executed: \"{Application.streamingAssetsPath}/Dependencies/python.exe\" " + command + "\n");
+        int cmdID = InitializeCMD();
+        cmds[cmdID].StartInfo.Arguments = command;
 
         if (fakeVideoPanel.activeSelf && fakeVideoToggle.isOn)
-        {
             GenerateFakeVideo();
-        }
-        bool started = cmd.Start();
-        //  cmd.WaitForExit();
+        bool started = cmds[cmdID].Start();
         if (started)
             PrintToOutput("Process successfully started");
         else
             PrintToOutput("Process could not be started", LogType.Error);
-        //StartCoroutine(WaitUntilCMDExited());
-        cmd.WaitForExit();
+        StartCoroutine(WaitUntilCMDExited(cmdID));
     }
 
     public void GenerateFakeVideo()
     {
         string command = " -framerate 1 -i " + $"\"{Application.streamingAssetsPath}/{((fakeBackgroundDropDown.value == 0) ? fakeVideoBlackBackground : fakeVideoWhiteBackground) }\" -i " + $" \"{audioPath.text}\" -t 1500 -s 1024x768 -pix_fmt yuv420p -r 30 " + $"\"{Path.ChangeExtension(audioPath.text, ".mp4")}\"";
-        //string command = " -framerate 1 -i "+$"\"{Application.streamingAssetsPath}/Dependencies/UPV fondo blanco.png\" -i " + $" \"{audioPath.text}\" -t 1500 -s 1024x768 -pix_fmt yuv420p -r 30 " + $"\"{Path.ChangeExtension(audioPath.text, ".mp4")}\"";
-        ffmpegCmd.StartInfo.Arguments = command;
-        print("Fake video creation command: " + $"\"{Application.streamingAssetsPath}/Dependencies/ffmpeg.exe\" " + command);
-        ffmpegCmd.Start();
+        int ffmpegID = InitializeFFMPEGCMD();
+        ffmpegCmds[ffmpegID].StartInfo.Arguments = command;
+        if (verbose.isOn) PrintToOutput("Fake video creation command: " + $"\"{Application.streamingAssetsPath}/Dependencies/ffmpeg.exe\" " + command);
+        ffmpegCmds[ffmpegID].Start();
     }
 
     /// <summary>
@@ -312,15 +351,14 @@ public class TranscripterScript : MonoBehaviour
         {
             case LogType.Error:
             case LogType.Exception:
-                info.text += "\n<b><color=\"red\">" + text + "</color></b>";
+                info.text += "<b><color=\"red\">" + text + "</color></b>\n";
                 break;
             case LogType.Warning:
                 if (!text.Contains("for graphic rebuild while we are already inside a graphic rebuild loop. This is not supported"))
-                    info.text += "\n<b><color=\"orange\">" + text + "</color></b>";
-                //print("printing to output " + text);
+                    info.text += "<b><color=\"orange\">" + text + "</color></b>\n";
                 break;
             default:
-                info.text += "\n" + text + "\n";
+                info.text += text + "\n";
                 break;
         }
         scroll.value = Mathf.Clamp01(scroll.value);
@@ -335,7 +373,6 @@ public class TranscripterScript : MonoBehaviour
     public void ClearConsole()
     {
         info.text = "";
-        PrintToOutput("");
     }
 
     public void ResetValuesToDefault()
@@ -358,9 +395,7 @@ public class TranscripterScript : MonoBehaviour
             beamWidthField.text = "" + configFile.beamWidth;
         }
         else
-        {
             ResetValuesToDefault();
-        }
     }
 
     public void SaveValues()
@@ -376,28 +411,12 @@ public class TranscripterScript : MonoBehaviour
         PrintToOutput(jsonString);
         print(Application.persistentDataPath);
         File.WriteAllText(Application.persistentDataPath + "/" + filename, jsonString);
-        PrintToOutput("SI");
     }
 
     public void RedirectLogToInputField(string logString, string stackTrace, LogType type)
     {
         PrintToOutput(logString, type);
     }
-
-    public void SwitchAdvancedOptions()
-    {
-
-        if (advancedOptions.activeSelf)
-        {
-            outputPanel.sizeDelta = new Vector2(outputPanel.sizeDelta.x, outputPanel.sizeDelta.y + 3 * advancedOption.rect.height);
-        }
-        else
-        {
-            outputPanel.sizeDelta = new Vector2(outputPanel.sizeDelta.x, outputPanel.sizeDelta.y - 3 * advancedOption.rect.height);
-        }
-        advancedOptions.SetActive(!advancedOptions.activeSelf);
-    }
-
     public string GetAudioRegex()
     {
         return audioRegex;
@@ -410,23 +429,24 @@ public class TranscripterScript : MonoBehaviour
     {
         return info.text;
     }
-    public IEnumerator WaitUntilCMDExited()
+    public IEnumerator WaitUntilCMDExited(int cmdID)
     {
         float timer = 0;
         int lastTimeSaid = 0;
-        while (!cmd.HasExited)
+        Process process = cmds[cmdID];
+            string fileName = cmdInfos[cmdID];
+        while (!process.HasExited)
         {
             timer += Time.deltaTime;
             int timeInt = (int)timer;
             float timeFloat = timer - timer;
             if (timeInt % 5 == 0 && lastTimeSaid != timeInt)
             {
-                 print($"Llevamos {timeInt} segundos");
+                 print($"File {cmdID} ({fileName}) was processed for {timeInt} seconds already");
                 lastTimeSaid = timeInt;
             }
             yield return null;
         }
-
     }
 
 }

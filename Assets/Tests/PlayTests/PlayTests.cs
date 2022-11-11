@@ -86,7 +86,7 @@ namespace Tests
             transcripterScript.audioPath.text = pathAudioFile;
 
             transcripterScript.ProcessAudioToText_Click();
-            yield return transcripterScript.WaitUntilCMDExited();
+            //yield return transcripterScript.WaitUntilCMDExited();
 
             ReadCompareAndDelete(fileName);
         }
@@ -101,7 +101,7 @@ namespace Tests
             transcripterScript.audioPath.text = pathAudioFolder;
 
             transcripterScript.ProcessAudioToText_Click();
-            yield return transcripterScript.WaitUntilCMDExited();
+          //  yield return transcripterScript.WaitUntilCMDExited();
 
             ReadCompareAndDeleteFolder(folderName);
         }
