@@ -66,7 +66,7 @@ public class TranscripterScript : MonoBehaviour
         ffmpegCmds = new List<Process>();
         audioPath.onValueChanged.AddListener(CheckAudioFieldIsFolder);
     }
-    
+
     private void OnDisable()
     {
         audioPath.onValueChanged.RemoveListener(CheckAudioFieldIsFolder);
@@ -171,7 +171,7 @@ public class TranscripterScript : MonoBehaviour
         Process newProcess = new Process();
         newProcess.StartInfo.FileName = Application.streamingAssetsPath + "/Dependencies/python.exe";
         newProcess.StartInfo.RedirectStandardOutput = true;
-        newProcess.StartInfo.RedirectStandardError = true;
+        //newProcess.StartInfo.RedirectStandardError = true;
         newProcess.StartInfo.CreateNoWindow = true;
         newProcess.StartInfo.UseShellExecute = false;
         newProcess.EnableRaisingEvents = true;
@@ -213,11 +213,11 @@ public class TranscripterScript : MonoBehaviour
     {
         loading.SetActive(false);
         Process process = ((Process)sender);
-        string errors = process.StandardError.ReadToEnd();
-        string results = process.StandardOutput.ReadToEnd();
+        //string output = ReadProcess(process);
+        string output = process.StandardOutput.ReadToEnd();
         int cmdID = cmds.FindIndex(e => e.Id == process.Id);
         //print($"Transcription of file {cmdID} ({cmdInfos[cmdID]}) is completed" + "\n\n" + errors + "\n\n" + results);
-        PrintToOutput($"Transcription completed\n\n{errors}\n\n{results}");
+        PrintToOutput($"Transcription completed\n\n{output}");
         cmds.RemoveAt(cmdID);
         cmdInfos.RemoveAt(cmdID);
         if (cmds.Count == 0)
@@ -365,6 +365,16 @@ public class TranscripterScript : MonoBehaviour
             yield return null;
         }
         process.Dispose();
+    }
+
+    public string ReadProcess(Process p)
+    {
+        string errors = "";
+        string results = "";
+        // Temporary removed because it caused some video files unable to work
+        // errors = p.StandardError.ReadToEnd();
+        results = p.StandardOutput.ReadToEnd();
+        return $"{results}\n\n{errors}";
     }
 
     public void GenerateFakeVideo()

@@ -8,23 +8,202 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 12004, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PixelRect:
+    serializedVersion: 2
+    x: 1164
+    y: 657
+    width: 564
+    height: 311
+  m_ShowMode: 0
+  m_Title: Console
+  m_RootView: {fileID: 4}
+  m_MinSize: {x: 100, y: 121}
+  m_MaxSize: {x: 4000, y: 4021}
+  m_Maximized: 0
+--- !u!114 &2
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12004, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
   m_EditorClassIdentifier: 
   m_PixelRect:
     serializedVersion: 2
-    x: 0
-    y: 43
-    width: 1920
-    height: 989
+    x: 961
+    y: 51
+    width: 958
+    height: 980
   m_ShowMode: 4
   m_Title: Scene
-  m_RootView: {fileID: 2}
+  m_RootView: {fileID: 9}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
-  m_Maximized: 1
---- !u!114 &2
+  m_Maximized: 0
+--- !u!114 &3
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: ConsoleWindow
+  m_EditorClassIdentifier: 
+  m_Children: []
+  m_Position:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 564
+    height: 311
+  m_MinSize: {x: 100, y: 121}
+  m_MaxSize: {x: 4000, y: 4021}
+  m_ActualView: {fileID: 15}
+  m_Panes:
+  - {fileID: 15}
+  m_Selected: 0
+  m_LastSelected: 0
+--- !u!114 &4
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 12010, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Children:
+  - {fileID: 3}
+  m_Position:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 564
+    height: 311
+  m_MinSize: {x: 100, y: 121}
+  m_MaxSize: {x: 4000, y: 4021}
+  vertical: 0
+  controlID: 3234
+--- !u!114 &5
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12010, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Children:
+  - {fileID: 12}
+  - {fileID: 6}
+  m_Position:
+    serializedVersion: 2
+    x: 0
+    y: 30
+    width: 958
+    height: 930
+  m_MinSize: {x: 300, y: 200}
+  m_MaxSize: {x: 24288, y: 16192}
+  vertical: 0
+  controlID: 268
+--- !u!114 &6
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: InspectorWindow
+  m_EditorClassIdentifier: 
+  m_Children: []
+  m_Position:
+    serializedVersion: 2
+    x: 575
+    y: 0
+    width: 383
+    height: 930
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 21}
+  m_Panes:
+  - {fileID: 21}
+  - {fileID: 20}
+  - {fileID: 19}
+  m_Selected: 0
+  m_LastSelected: 1
+--- !u!114 &7
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Children: []
+  m_Position:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 140
+    height: 564
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 22}
+  m_Panes:
+  - {fileID: 22}
+  m_Selected: 0
+  m_LastSelected: 0
+--- !u!114 &8
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: ProjectBrowser
+  m_EditorClassIdentifier: 
+  m_Children: []
+  m_Position:
+    serializedVersion: 2
+    x: 0
+    y: 564
+    width: 575
+    height: 366
+  m_MinSize: {x: 231, y: 271}
+  m_MaxSize: {x: 10001, y: 10021}
+  m_ActualView: {fileID: 17}
+  m_Panes:
+  - {fileID: 17}
+  m_Selected: 0
+  m_LastSelected: 0
+--- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -37,22 +216,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Children:
-  - {fileID: 3}
+  - {fileID: 10}
   - {fileID: 5}
-  - {fileID: 4}
+  - {fileID: 11}
   m_Position:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1920
-    height: 989
+    width: 958
+    height: 980
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_UseTopView: 1
   m_TopViewHeight: 30
   m_UseBottomView: 1
   m_BottomViewHeight: 20
---- !u!114 &3
+--- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -69,12 +248,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1920
+    width: 958
     height: 30
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
-  m_LastLoadedLayoutName: 
---- !u!114 &4
+  m_LastLoadedLayoutName: Preferences
+--- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,12 +269,12 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 969
-    width: 1920
+    y: 960
+    width: 958
     height: 20
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
---- !u!114 &5
+--- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,19 +287,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Children:
-  - {fileID: 6}
   - {fileID: 13}
+  - {fileID: 8}
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 30
-    width: 1920
-    height: 939
-  m_MinSize: {x: 300, y: 200}
-  m_MaxSize: {x: 24288, y: 16192}
-  vertical: 0
-  controlID: 2090
---- !u!114 &6
+    y: 0
+    width: 575
+    height: 930
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 16192, y: 16192}
+  vertical: 1
+  controlID: 269
+--- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,69 +313,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Children:
   - {fileID: 7}
-  - {fileID: 10}
+  - {fileID: 14}
   m_Position:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1465
-    height: 939
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 16192, y: 16192}
-  vertical: 1
-  controlID: 2091
---- !u!114 &7
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 1
-  m_Script: {fileID: 12010, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Children:
-  - {fileID: 8}
-  - {fileID: 9}
-  m_Position:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1465
-    height: 585
+    width: 575
+    height: 564
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 2092
---- !u!114 &8
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 1
-  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Children: []
-  m_Position:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 363
-    height: 585
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 17}
-  m_Panes:
-  - {fileID: 17}
-  m_Selected: 0
-  m_LastSelected: 0
---- !u!114 &9
+  controlID: 270
+--- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -211,146 +339,19 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 363
+    x: 140
     y: 0
-    width: 1102
-    height: 585
+    width: 435
+    height: 564
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
-  m_ActualView: {fileID: 18}
+  m_ActualView: {fileID: 23}
   m_Panes:
+  - {fileID: 23}
   - {fileID: 18}
   - {fileID: 16}
   m_Selected: 0
-  m_LastSelected: 1
---- !u!114 &10
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 12010, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Children:
-  - {fileID: 11}
-  - {fileID: 12}
-  m_Position:
-    serializedVersion: 2
-    x: 0
-    y: 585
-    width: 1465
-    height: 354
-  m_MinSize: {x: 200, y: 100}
-  m_MaxSize: {x: 16192, y: 8096}
-  vertical: 0
-  controlID: 2113
---- !u!114 &11
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 1
-  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ProjectBrowser
-  m_EditorClassIdentifier: 
-  m_Children: []
-  m_Position:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 389
-    height: 354
-  m_MinSize: {x: 231, y: 271}
-  m_MaxSize: {x: 10001, y: 10021}
-  m_ActualView: {fileID: 19}
-  m_Panes:
-  - {fileID: 19}
-  m_Selected: 0
-  m_LastSelected: 0
---- !u!114 &12
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ConsoleWindow
-  m_EditorClassIdentifier: 
-  m_Children: []
-  m_Position:
-    serializedVersion: 2
-    x: 389
-    y: 0
-    width: 1076
-    height: 354
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 20}
-  m_Panes:
-  - {fileID: 20}
-  m_Selected: 0
-  m_LastSelected: 0
---- !u!114 &13
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 12010, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Children:
-  - {fileID: 14}
-  - {fileID: 15}
-  m_Position:
-    serializedVersion: 2
-    x: 1465
-    y: 0
-    width: 455
-    height: 939
-  m_MinSize: {x: 100, y: 200}
-  m_MaxSize: {x: 8096, y: 16192}
-  vertical: 1
-  controlID: 2086
---- !u!114 &14
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 1
-  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Children: []
-  m_Position:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 455
-    height: 428
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 21}
-  m_Panes:
-  - {fileID: 21}
-  m_Selected: 0
-  m_LastSelected: 0
+  m_LastSelected: 2
 --- !u!114 &15
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -360,23 +361,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: TestRunnerWindow
+  m_Script: {fileID: 12003, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
   m_EditorClassIdentifier: 
-  m_Children: []
-  m_Position:
-    serializedVersion: 2
-    x: 0
-    y: 428
-    width: 455
-    height: 511
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 22}
-  m_Panes:
-  - {fileID: 22}
-  m_Selected: 0
-  m_LastSelected: 0
+  m_TitleContent:
+    m_Text: Console
+    m_Image: {fileID: -4327648978806127646, guid: 0000000000000000d000000000000000, type: 0}
+    m_Tooltip: 
+  m_Pos:
+    serializedVersion: 2
+    x: 1164
+    y: 657
+    width: 564
+    height: 290
+  m_ViewDataDictionary: {fileID: 0}
+  m_OverlayCanvas:
+    m_LastAppliedPresetName: Default
+    m_SaveData: []
 --- !u!114 &16
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -397,10 +400,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 363
-    y: 73
-    width: 1100
-    height: 564
+    x: 1101
+    y: 81
+    width: 433
+    height: 543
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -411,7 +414,7 @@ MonoBehaviour:
   m_ShowGizmos: 0
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
-  m_TargetSize: {x: 1100, y: 543}
+  m_TargetSize: {x: 433, y: 522}
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
@@ -426,10 +429,10 @@ MonoBehaviour:
     m_VRangeLocked: 0
     hZoomLockedByDefault: 0
     vZoomLockedByDefault: 0
-    m_HBaseRangeMin: -550
-    m_HBaseRangeMax: 550
-    m_VBaseRangeMin: -271.5
-    m_VBaseRangeMax: 271.5
+    m_HBaseRangeMin: -216.5
+    m_HBaseRangeMax: 216.5
+    m_VBaseRangeMin: -261
+    m_VBaseRangeMax: 261
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -447,29 +450,348 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
-      width: 1100
-      height: 543
+      width: 433
+      height: 522
     m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 550, y: 271.5}
+    m_Translation: {x: 216.5, y: 261}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -550
-      y: -271.5
-      width: 1100
-      height: 543
+      x: -216.5
+      y: -261
+      width: 433
+      height: 522
     m_MinimalGUI: 1
   m_defaultScale: 1
-  m_LastWindowPixelSize: {x: 1100, y: 564}
+  m_LastWindowPixelSize: {x: 433, y: 543}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
   m_XRRenderMode: 0
   m_RenderTexture: {fileID: 0}
 --- !u!114 &17
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 12014, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MinSize: {x: 230, y: 250}
+  m_MaxSize: {x: 10000, y: 10000}
+  m_TitleContent:
+    m_Text: Project
+    m_Image: {fileID: -5467254957812901981, guid: 0000000000000000d000000000000000, type: 0}
+    m_Tooltip: 
+  m_Pos:
+    serializedVersion: 2
+    x: 961
+    y: 645
+    width: 574
+    height: 345
+  m_ViewDataDictionary: {fileID: 0}
+  m_OverlayCanvas:
+    m_LastAppliedPresetName: Default
+    m_SaveData: []
+  m_SearchFilter:
+    m_NameFilter: 
+    m_ClassNames: []
+    m_AssetLabels: []
+    m_AssetBundleNames: []
+    m_VersionControlStates: []
+    m_SoftLockControlStates: []
+    m_ReferencingInstanceIDs: 
+    m_SceneHandles: 
+    m_ShowAllHits: 0
+    m_SkipHidden: 0
+    m_SearchArea: 1
+    m_Folders:
+    - Assets/Transcripter
+    m_Globs: []
+    m_OriginalText: 
+  m_ViewMode: 1
+  m_StartGridSize: 16
+  m_LastFolders:
+  - Assets/Transcripter
+  m_LastFoldersGridSize: -1
+  m_LastProjectPath: C:\Users\Javi\Documents\Unity Projects\DeepSpeechUnity
+  m_LockTracker:
+    m_IsLocked: 0
+  m_FolderTreeState:
+    scrollPos: {x: 0, y: 180}
+    m_SelectedIDs: 6a630000
+    m_LastClickedID: 25450
+    m_ExpandedIDs: 000000004463000046630000486300004a6300004c6300004e630000506300005263000000ca9a3bffffff7f
+    m_RenameOverlay:
+      m_UserAcceptedRename: 0
+      m_Name: 
+      m_OriginalName: 
+      m_EditFieldRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      m_UserData: 0
+      m_IsWaitingForDelay: 0
+      m_IsRenaming: 0
+      m_OriginalEventType: 11
+      m_IsRenamingFilename: 1
+      m_ClientGUIView: {fileID: 0}
+    m_SearchString: 
+    m_CreateAssetUtility:
+      m_EndAction: {fileID: 0}
+      m_InstanceID: 0
+      m_Path: 
+      m_Icon: {fileID: 0}
+      m_ResourceFile: 
+  m_AssetTreeState:
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 
+    m_LastClickedID: 0
+    m_ExpandedIDs: 000000004463000046630000486300004a6300004c6300004e630000506300005263000000ca9a3bffffff7f
+    m_RenameOverlay:
+      m_UserAcceptedRename: 0
+      m_Name: 
+      m_OriginalName: 
+      m_EditFieldRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      m_UserData: 0
+      m_IsWaitingForDelay: 0
+      m_IsRenaming: 0
+      m_OriginalEventType: 11
+      m_IsRenamingFilename: 1
+      m_ClientGUIView: {fileID: 0}
+    m_SearchString: 
+    m_CreateAssetUtility:
+      m_EndAction: {fileID: 0}
+      m_InstanceID: 0
+      m_Path: 
+      m_Icon: {fileID: 0}
+      m_ResourceFile: 
+  m_ListAreaState:
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
+    m_HadKeyboardFocusLastEvent: 1
+    m_ExpandedInstanceIDs: 
+    m_RenameOverlay:
+      m_UserAcceptedRename: 0
+      m_Name: 
+      m_OriginalName: 
+      m_EditFieldRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      m_UserData: 0
+      m_IsWaitingForDelay: 0
+      m_IsRenaming: 0
+      m_OriginalEventType: 11
+      m_IsRenamingFilename: 1
+      m_ClientGUIView: {fileID: 0}
+    m_CreateAssetUtility:
+      m_EndAction: {fileID: 0}
+      m_InstanceID: 0
+      m_Path: 
+      m_Icon: {fileID: 0}
+      m_ResourceFile: 
+    m_NewAssetIndexInList: -1
+    m_ScrollPosition: {x: 0, y: 0}
+    m_GridSize: 16
+  m_SkipHiddenPackages: 0
+  m_DirectoriesAreaWidth: 200
+--- !u!114 &18
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 13855, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MinSize: {x: 310, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_TitleContent:
+    m_Text: Preferences
+    m_Image: {fileID: -5712115415447495865, guid: 0000000000000000d000000000000000, type: 0}
+    m_Tooltip: 
+  m_Pos:
+    serializedVersion: 2
+    x: 281
+    y: 73
+    width: 869
+    height: 548
+  m_ViewDataDictionary: {fileID: 0}
+  m_OverlayCanvas:
+    m_LastAppliedPresetName: Default
+    m_SaveData: []
+  m_PosLeft: {x: 0, y: 0}
+  m_PosRight: {x: 0, y: 0}
+  m_Scope: 0
+  m_SplitterFlex: 0.2
+  m_SearchText: 
+  m_TreeViewState:
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: be8c5ac9
+    m_LastClickedID: -916812610
+    m_ExpandedIDs: 2956c29689577ec10000000001fecd11
+    m_RenameOverlay:
+      m_UserAcceptedRename: 0
+      m_Name: 
+      m_OriginalName: 
+      m_EditFieldRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      m_UserData: 0
+      m_IsWaitingForDelay: 0
+      m_IsRenaming: 0
+      m_OriginalEventType: 11
+      m_IsRenamingFilename: 0
+      m_ClientGUIView: {fileID: 0}
+    m_SearchString: 
+--- !u!114 &19
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 12079, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MinSize: {x: 390, y: 390}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_TitleContent:
+    m_Text: Lighting
+    m_Image: {fileID: -1347227620855488341, guid: 0000000000000000d000000000000000, type: 0}
+    m_Tooltip: 
+  m_Pos:
+    serializedVersion: 2
+    x: 1150
+    y: 81
+    width: 761
+    height: 902
+  m_ViewDataDictionary: {fileID: 0}
+  m_OverlayCanvas:
+    m_LastAppliedPresetName: Default
+    m_SaveData: []
+--- !u!114 &20
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 13854, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MinSize: {x: 310, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_TitleContent:
+    m_Text: Project Settings
+    m_Image: {fileID: -5712115415447495865, guid: 0000000000000000d000000000000000, type: 0}
+    m_Tooltip: 
+  m_Pos:
+    serializedVersion: 2
+    x: 1152
+    y: 73
+    width: 767
+    height: 918
+  m_ViewDataDictionary: {fileID: 0}
+  m_OverlayCanvas:
+    m_LastAppliedPresetName: Default
+    m_SaveData: []
+  m_PosLeft: {x: 0, y: 0}
+  m_PosRight: {x: 0, y: 0}
+  m_Scope: 1
+  m_SplitterFlex: 0.2
+  m_SearchText: 
+  m_TreeViewState:
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 4dcf9b58
+    m_LastClickedID: 1486606157
+    m_ExpandedIDs: a01a5fa653336be200000000bd8e5e4dc53aba5a
+    m_RenameOverlay:
+      m_UserAcceptedRename: 0
+      m_Name: 
+      m_OriginalName: 
+      m_EditFieldRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      m_UserData: 0
+      m_IsWaitingForDelay: 0
+      m_IsRenaming: 0
+      m_OriginalEventType: 11
+      m_IsRenamingFilename: 0
+      m_ClientGUIView: {fileID: 0}
+    m_SearchString: 
+--- !u!114 &21
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12019, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_TitleContent:
+    m_Text: Inspector
+    m_Image: {fileID: -2667387946076563598, guid: 0000000000000000d000000000000000, type: 0}
+    m_Tooltip: 
+  m_Pos:
+    serializedVersion: 2
+    x: 1536
+    y: 81
+    width: 382
+    height: 909
+  m_ViewDataDictionary: {fileID: 0}
+  m_OverlayCanvas:
+    m_LastAppliedPresetName: Default
+    m_SaveData: []
+  m_ObjectsLockedBeforeSerialization: []
+  m_InstanceIDsLockedBeforeSerialization: 
+  m_PreviewResizer:
+    m_CachedPref: 160
+    m_ControlHash: -371814159
+    m_PrefName: Preview_InspectorPreview
+  m_LastInspectedObjectInstanceID: -1
+  m_LastVerticalScrollValue: 0
+  m_GlobalObjectId: 
+  m_InspectorMode: 0
+  m_LockTracker:
+    m_IsLocked: 0
+  m_PreviewWindow: {fileID: 0}
+--- !u!114 &22
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -489,10 +811,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 0
-    y: 73
-    width: 362
-    height: 564
+    x: 961
+    y: 81
+    width: 139
+    height: 543
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -502,7 +824,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: e61cfdff2821fdff7821fdfff22dfdff422efdffba3afdff0a3bfdff4a48fdff9a48fdffce56fdff2257fdff645bfdffe05cfdff245dfdff7a62fdff1667fdff5867fdff0873fdff4a73fdff2285fdff6485fdffb091fdfff291fdffa89dfdffea9dfdff9ca9fdffdea9fdfff4b3fdff36b4fdffd0c1fdffe6c1fdffc0c2fdffcac2fdffd4c2fdffdcc2fdffdec2fdff2ec3fdff2acffdff7acffdffd6dbfdff26dcfdff04eafdff56eafdffaceffdff5af4fdffaef4fdffbafefdff4e03feffa203feffee04feffec0afeff400bfeff8a0cfeff1012feff6412feffde1cfeff5c21feffac21feff622dfeffb62dfeffc237feff0c40feff6040feff6c4afeffea4efeff3e4ffefff059feff6e5efeffbe5efeff3e69feff9269feffc473feffb478feff0879feff3a83feff5288feffa688feffb292feff3a98feff8e98feffbea2feff12a8feff66a8feff96b2feff16b7feff6ab7feff76c1feff80c6feffd2c6feff56c7feff0cccfeff60ccfeff6cd6feffecdafeff40dbfeff4ce5feffcce9feff20eafeff2cf4feffacf8feff00f9feffae03ffff3e08ffff9208ffffc212ffff4017ffff9417ffffc221ffffd426ffff2827ffff7c31ffffc236ffff1637ffff4641ffffe246ffff3647ffff6651ffff7856ffffcc56fffffc60ffff7c65ffffd065ffff0070ffff0a75ffff5e75ffff8e7fffff1484ffff6884ffff988effff1694ffff6894ffffec94ffff2e9affff829affffb4a4ffff34a9ffff88a9ffffbab3ffffd2b8ffff24b9ffffa8b9ffff2cc0ffff80c0ffffb2caffff94d0ffffe8d0ffff1cdbffff30fbffff28c30000d6c30000a8c40000d8c400005cc5000090c50000
+      m_ExpandedIDs: 5096ffff9a96fffff09bffff8cabffffd2abffff14b0ffff00b1ffff46b1ffff9cb6ffff84c8ffffcac8ffff20ceffffdecfffff24d0ffff7ed5fffff8e5ffffa2e9ffffe6e9ffff28eeffff3aefffff7eefffffd4f4ffff30fbffffca7900000c7a00008c7a000058ac000006ad0000d8ad00001aaf000048af0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -518,15 +840,15 @@ MonoBehaviour:
         m_IsRenaming: 0
         m_OriginalEventType: 11
         m_IsRenamingFilename: 0
-        m_ClientGUIView: {fileID: 0}
+        m_ClientGUIView: {fileID: 7}
       m_SearchString: 
     m_ExpandedScenes: []
     m_CurrenRootInstanceID: 0
     m_LockTracker:
       m_IsLocked: 0
     m_CurrentSortingName: TransformSorting
-  m_WindowGUID: 4c969a2b90040154d917609493e03593
---- !u!114 &18
+  m_WindowGUID: ed8001c55957f2b46a1d87ecf6f33459
+--- !u!114 &23
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -546,10 +868,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 363
-    y: 73
-    width: 1100
-    height: 564
+    x: 1101
+    y: 81
+    width: 433
+    height: 543
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -763,19 +1085,19 @@ MonoBehaviour:
       id: Scene View/Particles
       index: 10
       layout: 4
-  m_WindowGUID: cc27987af1a868c49b0894db9c0f5429
+  m_WindowGUID: 69b902bdb0b06a449a2793e289156aba
   m_Gizmos: 1
   m_OverrideSceneCullingMask: 6917529027641081856
-  m_SceneIsLit: 1
+  m_SceneIsLit: 0
   m_SceneLighting: 1
-  m_2DMode: 0
+  m_2DMode: 1
   m_isRotationLocked: 0
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 532.4697, y: 390.5856, z: 7.799011}
+    m_Target: {x: 192.40858, y: 266.15686, z: -5.0277686}
     speed: 2
-    m_Value: {x: 532.4697, y: 390.5856, z: 7.799011}
+    m_Value: {x: 195.68382, y: 267.37338, z: -4.892705}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -787,7 +1109,7 @@ MonoBehaviour:
   m_SceneViewState:
     m_AlwaysRefresh: 0
     showFog: 1
-    showSkybox: 1
+    showSkybox: 0
     showFlares: 1
     showImageEffects: 1
     showParticleSystems: 1
@@ -804,17 +1126,17 @@ MonoBehaviour:
       m_Size: {x: 0, y: 0}
     yGrid:
       m_Fade:
-        m_Target: 1
+        m_Target: 0
         speed: 2
-        m_Value: 1
+        m_Value: 0
       m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
       m_Pivot: {x: 0, y: 0, z: 0}
       m_Size: {x: 1, y: 1}
     zGrid:
       m_Fade:
-        m_Target: 0
+        m_Target: 1
         speed: 2
-        m_Value: 0
+        m_Value: 1
       m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
       m_Pivot: {x: 0, y: 0, z: 0}
       m_Size: {x: 1, y: 1}
@@ -822,13 +1144,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.0014999995, y: 0, z: 0, w: 0.99999887}
+    m_Target: {x: 0, y: 0, z: 0, w: 1}
     speed: 2
-    m_Value: {x: -0.0014999995, y: 0, z: 0, w: 0.99999887}
+    m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 288.22583
+    m_Target: 313.64938
     speed: 2
-    m_Value: 288.22583
+    m_Value: 300.14294
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -836,7 +1158,7 @@ MonoBehaviour:
   m_CameraSettings:
     m_Speed: 1
     m_SpeedNormalized: 0.5
-    m_SpeedMin: 0.001
+    m_SpeedMin: 0.01
     m_SpeedMax: 2
     m_EasingEnabled: 1
     m_EasingDuration: 0.4
@@ -853,1281 +1175,3 @@ MonoBehaviour:
   m_SceneVisActive: 1
   m_LastLockedObject: {fileID: 0}
   m_ViewIsLockedToObject: 0
---- !u!114 &19
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 1
-  m_Script: {fileID: 12014, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MinSize: {x: 230, y: 250}
-  m_MaxSize: {x: 10000, y: 10000}
-  m_TitleContent:
-    m_Text: Project
-    m_Image: {fileID: -5467254957812901981, guid: 0000000000000000d000000000000000, type: 0}
-    m_Tooltip: 
-  m_Pos:
-    serializedVersion: 2
-    x: 0
-    y: 658
-    width: 388
-    height: 333
-  m_ViewDataDictionary: {fileID: 0}
-  m_OverlayCanvas:
-    m_LastAppliedPresetName: Default
-    m_SaveData: []
-  m_SearchFilter:
-    m_NameFilter: 
-    m_ClassNames: []
-    m_AssetLabels: []
-    m_AssetBundleNames: []
-    m_VersionControlStates: []
-    m_SoftLockControlStates: []
-    m_ReferencingInstanceIDs: 
-    m_SceneHandles: 
-    m_ShowAllHits: 0
-    m_SkipHidden: 0
-    m_SearchArea: 1
-    m_Folders:
-    - Assets/Transcripter
-    m_Globs: []
-    m_OriginalText: 
-  m_ViewMode: 1
-  m_StartGridSize: 96
-  m_LastFolders:
-  - Assets/Transcripter
-  m_LastFoldersGridSize: 96
-  m_LastProjectPath: C:\Users\Javi\Documents\Unity Projects\DeepSpeechUnity
-  m_LockTracker:
-    m_IsLocked: 0
-  m_FolderTreeState:
-    scrollPos: {x: 0, y: 23}
-    m_SelectedIDs: 74630000
-    m_LastClickedID: 25460
-    m_ExpandedIDs: 000000004c6300004e63000050630000526300005463000056630000586300005a63000000ca9a3bffffff7f
-    m_RenameOverlay:
-      m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
-      m_EditFieldRect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 0
-        height: 0
-      m_UserData: 0
-      m_IsWaitingForDelay: 0
-      m_IsRenaming: 0
-      m_OriginalEventType: 11
-      m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 11}
-    m_SearchString: 
-    m_CreateAssetUtility:
-      m_EndAction: {fileID: 0}
-      m_InstanceID: 0
-      m_Path: 
-      m_Icon: {fileID: 0}
-      m_ResourceFile: 
-  m_AssetTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 
-    m_LastClickedID: 0
-    m_ExpandedIDs: 000000004c6300004e63000050630000526300005463000056630000586300005a63000000ca9a3bffffff7f
-    m_RenameOverlay:
-      m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
-      m_EditFieldRect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 0
-        height: 0
-      m_UserData: 0
-      m_IsWaitingForDelay: 0
-      m_IsRenaming: 0
-      m_OriginalEventType: 11
-      m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 0}
-    m_SearchString: 
-    m_CreateAssetUtility:
-      m_EndAction: {fileID: 0}
-      m_InstanceID: 0
-      m_Path: 
-      m_Icon: {fileID: 0}
-      m_ResourceFile: 
-  m_ListAreaState:
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
-    m_ExpandedInstanceIDs: c6230000
-    m_RenameOverlay:
-      m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
-      m_EditFieldRect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 0
-        height: 0
-      m_UserData: 0
-      m_IsWaitingForDelay: 0
-      m_IsRenaming: 0
-      m_OriginalEventType: 11
-      m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 11}
-    m_CreateAssetUtility:
-      m_EndAction: {fileID: 0}
-      m_InstanceID: 0
-      m_Path: 
-      m_Icon: {fileID: 0}
-      m_ResourceFile: 
-    m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 0}
-    m_GridSize: 96
-  m_SkipHiddenPackages: 0
-  m_DirectoriesAreaWidth: 143
---- !u!114 &20
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 1
-  m_Script: {fileID: 12003, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_TitleContent:
-    m_Text: Console
-    m_Image: {fileID: -4327648978806127646, guid: 0000000000000000d000000000000000, type: 0}
-    m_Tooltip: 
-  m_Pos:
-    serializedVersion: 2
-    x: 389
-    y: 658
-    width: 1074
-    height: 333
-  m_ViewDataDictionary: {fileID: 0}
-  m_OverlayCanvas:
-    m_LastAppliedPresetName: Default
-    m_SaveData: []
---- !u!114 &21
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 1
-  m_Script: {fileID: 12019, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_TitleContent:
-    m_Text: Inspector
-    m_Image: {fileID: -2667387946076563598, guid: 0000000000000000d000000000000000, type: 0}
-    m_Tooltip: 
-  m_Pos:
-    serializedVersion: 2
-    x: 1465
-    y: 73
-    width: 454
-    height: 407
-  m_ViewDataDictionary: {fileID: 0}
-  m_OverlayCanvas:
-    m_LastAppliedPresetName: Default
-    m_SaveData: []
-  m_ObjectsLockedBeforeSerialization: []
-  m_InstanceIDsLockedBeforeSerialization: 
-  m_PreviewResizer:
-    m_CachedPref: 160
-    m_ControlHash: -371814159
-    m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 0
-  m_GlobalObjectId: 
-  m_InspectorMode: 0
-  m_LockTracker:
-    m_IsLocked: 0
-  m_PreviewWindow: {fileID: 0}
---- !u!114 &22
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 13401, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_TitleContent:
-    m_Text: Test Runner
-    m_Image: {fileID: 0}
-    m_Tooltip: 
-  m_Pos:
-    serializedVersion: 2
-    x: 1465
-    y: 501
-    width: 454
-    height: 490
-  m_ViewDataDictionary: {fileID: 0}
-  m_OverlayCanvas:
-    m_LastAppliedPresetName: Default
-    m_SaveData: []
-  m_Spl:
-    ID: 2148
-    splitterInitialOffset: 290
-    currentActiveSplitter: -1
-    realSizes:
-    - 220
-    - 200
-    relativeSizes:
-    - 0.52380955
-    - 0.47619045
-    minSizes:
-    - 32
-    - 32
-    maxSizes:
-    - 0
-    - 0
-    lastTotalSize: 420
-    splitSize: 6
-    xOffset: 0
-    m_Version: 1
-    oldRealSizes: 
-    oldMinSizes: 
-    oldMaxSizes: 
-    oldSplitSize: 0
-  m_TestTypeToolbarIndex: 0
-  m_PlayModeTestListGUI:
-    m_Window: {fileID: 22}
-    m_NewResultList:
-    - id: 1011
-      uniqueId: '[DeepSpeechUnity][suite]'
-      name: DeepSpeechUnity
-      fullName: DeepSpeechUnity
-      resultStatus: 1
-      duration: 4.8776245
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 
-      parentUniqueId: 
-    - id: 1019
-      uniqueId: '[PlayTests.dll][suite]'
-      name: PlayTests.dll
-      fullName: C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Library/ScriptAssemblies/PlayTests.dll
-      resultStatus: 1
-      duration: 4.6543126
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1011
-      parentUniqueId: '[DeepSpeechUnity][suite]'
-    - id: 1020
-      uniqueId: PlayTests.dll/[PlayTests][Tests][suite]
-      name: Tests
-      fullName: Tests
-      resultStatus: 1
-      duration: 4.641151
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1019
-      parentUniqueId: '[PlayTests.dll][suite]'
-    - id: 1012
-      uniqueId: PlayTests.dll/Tests/[PlayTests][suite]
-      name: PlayTests
-      fullName: Tests.PlayTests
-      resultStatus: 1
-      duration: 4.6374784
-      messages: 
-      output: 'You are trying to create a MonoBehaviour using the ''new'' keyword. 
-        This is not allowed.  MonoBehaviours can only be added using AddComponent().
-        Alternatively, your script can inherit from ScriptableObject or no base class
-        at all
-
-'
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1020
-      parentUniqueId: PlayTests.dll/[PlayTests][Tests][suite]
-    - id: 1013
-      uniqueId: PlayTests.dll/Tests/PlayTests/[PlayTests][Tests.PlayTests.PlayTestsSimplePasses]
-      name: PlayTestsSimplePasses
-      fullName: Tests.PlayTests.PlayTestsSimplePasses
-      resultStatus: 1
-      duration: 0.0089001
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1012
-      parentUniqueId: PlayTests.dll/Tests/[PlayTests][suite]
-    - id: 1014
-      uniqueId: PlayTests.dll/Tests/PlayTests/[PlayTests][Tests.PlayTests.PlayTestsWithEnumeratorPasses]
-      name: PlayTestsWithEnumeratorPasses
-      fullName: Tests.PlayTests.PlayTestsWithEnumeratorPasses
-      resultStatus: 1
-      duration: 0.0105223
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1012
-      parentUniqueId: PlayTests.dll/Tests/[PlayTests][suite]
-    - id: 1015
-      uniqueId: PlayTests.dll/Tests/PlayTests/[PlayTests][Tests.PlayTests.TestPrintToOutput]
-      name: TestPrintToOutput
-      fullName: Tests.PlayTests.TestPrintToOutput
-      resultStatus: 1
-      duration: 1.0265932
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1012
-      parentUniqueId: PlayTests.dll/Tests/[PlayTests][suite]
-    - id: 1005
-      uniqueId: PlayTests.dll/Tests/PlayTests/[PlayTests][Tests.PlayTests.TestPrintToOutputError]
-      name: TestPrintToOutputError
-      fullName: Tests.PlayTests.TestPrintToOutputError
-      resultStatus: 1
-      duration: 1.01982
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1001
-      parentUniqueId: PlayTests.dll/Tests/[PlayTests][suite]
-    - id: 1016
-      uniqueId: PlayTests.dll/Tests/PlayTests/[PlayTests][Tests.PlayTests.TestTranscription1]
-      name: TestTranscription1
-      fullName: Tests.PlayTests.TestTranscription1
-      resultStatus: 1
-      duration: 4.59667
-      messages: 
-      output: 'Transcription of file 0 (test_kirche.wav) is completed
-
-
-        Loading
-        model from file C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Assets/StreamingAssets/Languages/German.pbmm
-
-        TensorFlow:
-        v2.3.0-6-g23ad988fcd
-
-        DeepSpeech: v0.9.3-0-gf2e9c858
-
-        2022-11-13
-        19:24:56.940554: I tensorflow/core/platform/cpu_feature_guard.cc:142] This
-        TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN)to
-        use the following CPU instructions in performance-critical operations:  AVX2
-
-        To
-        enable them in other operations, rebuild TensorFlow with the appropriate
-        compiler flags.
-
-        Loaded model in 0.0106s.
-
-        Loading scorer
-        from files C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Assets/StreamingAssets/Languages/German.scorer
-
-        Loaded
-        scorer in 0.0122s.
-
-        Running inference.
-
-        Inference took 2.880s
-        for 5.700s audio file.
-
-
-
-        Executed client.py
-
-        path_to_save
-        C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Assets/Resources/testAudios\test_kirche.srt
-
-        os.path.exists
-        True
-
-        os.path.isfile True
-
-        Successfully saved in C:/Users/Javi/Documents/Unity
-        Projects/DeepSpeechUnity/Assets/Resources/testAudios\test_kirche.srt
-
-
-
-        Checking
-        file C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Assets/Resources/testAudios/test_kirche.srt
-        with expected C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Assets/Resources/testOutputs/test_kirche.srt
-
-'
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1012
-      parentUniqueId: PlayTests.dll/Tests/[PlayTests][suite]
-    - id: 1017
-      uniqueId: PlayTests.dll/Tests/PlayTests/[PlayTests][Tests.PlayTests.TestTranscriptionFolder]
-      name: TestTranscriptionFolder
-      fullName: Tests.PlayTests.TestTranscriptionFolder
-      resultStatus: 2
-      duration: 180.22987
-      messages: Timeout value of 180000ms was exceeded
-      output: 'File 0 (irak1.wav) was processed for 5 seconds already
-
-        File
-        1 (irak2.wav) was processed for 5 seconds already
-
-        File 2 (irak3.wav)
-        was processed for 5 seconds already
-
-        File 3 (irak4.wav) was processed
-        for 5 seconds already
-
-        File 0 (irak1.wav) was processed for 5 seconds
-        already
-
-        File 0 (irak1.wav) was processed for 10 seconds already
-
-        File
-        1 (irak2.wav) was processed for 10 seconds already
-
-        File 2 (irak3.wav)
-        was processed for 10 seconds already
-
-        File 3 (irak4.wav) was processed
-        for 10 seconds already
-
-        File 0 (irak1.wav) was processed for 10 seconds
-        already
-
-        File 0 (irak1.wav) was processed for 15 seconds already
-
-        File
-        1 (irak2.wav) was processed for 15 seconds already
-
-        File 2 (irak3.wav)
-        was processed for 15 seconds already
-
-        File 3 (irak4.wav) was processed
-        for 15 seconds already
-
-        File 0 (irak1.wav) was processed for 15 seconds
-        already
-
-        File 0 (irak1.wav) was processed for 20 seconds already
-
-        File
-        1 (irak2.wav) was processed for 20 seconds already
-
-        File 2 (irak3.wav)
-        was processed for 20 seconds already
-
-        File 3 (irak4.wav) was processed
-        for 20 seconds already
-
-        File 0 (irak1.wav) was processed for 20 seconds
-        already
-
-        File 0 (irak1.wav) was processed for 25 seconds already
-
-        File
-        1 (irak2.wav) was processed for 25 seconds already
-
-        File 2 (irak3.wav)
-        was processed for 25 seconds already
-
-        File 3 (irak4.wav) was processed
-        for 25 seconds already
-
-        File 0 (irak1.wav) was processed for 25 seconds
-        already
-
-        File 0 (irak1.wav) was processed for 30 seconds already
-
-        File
-        1 (irak2.wav) was processed for 30 seconds already
-
-        File 2 (irak3.wav)
-        was processed for 30 seconds already
-
-        File 3 (irak4.wav) was processed
-        for 30 seconds already
-
-        Transcription of file 0 (irak1.wav) is completed
-
-
-        Loading
-        model from file C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Assets/StreamingAssets/Languages/German.pbmm
-
-        TensorFlow:
-        v2.3.0-6-g23ad988fcd
-
-        DeepSpeech: v0.9.3-0-gf2e9c858
-
-        2022-11-13
-        19:13:13.327027: I tensorflow/core/platform/cpu_feature_guard.cc:142] This
-        TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN)to
-        use the following CPU instructions in performance-critical operations:  AVX2
-
-        To
-        enable them in other operations, rebuild TensorFlow with the appropriate
-        compiler flags.
-
-        Loaded model in 0.0157s.
-
-        Loading scorer
-        from files C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Assets/StreamingAssets/Languages/German.scorer
-
-        Loaded
-        scorer in 0.0215s.
-
-        Running inference.
-
-        Inference took 29.415s
-        for 33.268s audio file.
-
-
-
-        Executed client.py
-
-        path_to_save
-        C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Assets/Resources/testAudios/irak\irak1.srt
-
-        os.path.exists
-        True
-
-        os.path.isfile True
-
-        Successfully saved in C:/Users/Javi/Documents/Unity
-        Projects/DeepSpeechUnity/Assets/Resources/testAudios/irak\irak1.srt
-
-
-
-        A
-        meta data file (.meta) exists but its asset ''Assets/Resources/testAudios/irak/irak2.srt''
-        can''t be found. When moving or deleting files outside of Unity, please ensure
-        that the corresponding .meta file is moved or deleted along with it.
-
-        Checking
-        file C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Assets/Resources/testAudios/irak/irak2.srt
-        with expected C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Assets/Resources/testOutputs/irak/irak2.srt
-
-        A
-        meta data file (.meta) exists but its asset ''Assets/Resources/testAudios/irak/irak3.srt''
-        can''t be found. When moving or deleting files outside of Unity, please ensure
-        that the corresponding .meta file is moved or deleted along with it.
-
-        Checking
-        file C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Assets/Resources/testAudios/irak/irak3.srt
-        with expected C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Assets/Resources/testOutputs/irak/irak3.srt
-
-        File
-        3 (irak4.wav) was processed for 35 seconds already
-
-        File 2 (irak4.wav)
-        was processed for 5 seconds already
-
-        File 3 (irak4.wav) was processed
-        for 40 seconds already
-
-        File 2 (irak4.wav) was processed for 10 seconds
-        already
-
-        File 3 (irak4.wav) was processed for 45 seconds already
-
-        File
-        2 (irak4.wav) was processed for 15 seconds already
-
-        File 3 (irak4.wav)
-        was processed for 50 seconds already
-
-        File 2 (irak4.wav) was processed
-        for 20 seconds already
-
-        File 3 (irak4.wav) was processed for 55 seconds
-        already
-
-        File 2 (irak4.wav) was processed for 25 seconds already
-
-        File
-        3 (irak4.wav) was processed for 60 seconds already
-
-        File 2 (irak4.wav)
-        was processed for 30 seconds already
-
-        File 3 (irak4.wav) was processed
-        for 65 seconds already
-
-        File 2 (irak4.wav) was processed for 35 seconds
-        already
-
-        File 3 (irak4.wav) was processed for 70 seconds already
-
-        File
-        2 (irak4.wav) was processed for 40 seconds already
-
-        File 3 (irak4.wav)
-        was processed for 75 seconds already
-
-        File 2 (irak4.wav) was processed
-        for 45 seconds already
-
-        File 3 (irak4.wav) was processed for 80 seconds
-        already
-
-        File 2 (irak4.wav) was processed for 50 seconds already
-
-        File
-        3 (irak4.wav) was processed for 85 seconds already
-
-        File 2 (irak4.wav)
-        was processed for 55 seconds already
-
-        File 3 (irak4.wav) was processed
-        for 90 seconds already
-
-        File 2 (irak4.wav) was processed for 60 seconds
-        already
-
-        File 3 (irak4.wav) was processed for 95 seconds already
-
-        File
-        2 (irak4.wav) was processed for 65 seconds already
-
-        File 3 (irak4.wav)
-        was processed for 100 seconds already
-
-        File 2 (irak4.wav) was processed
-        for 70 seconds already
-
-        File 3 (irak4.wav) was processed for 105
-        seconds already
-
-        File 2 (irak4.wav) was processed for 75 seconds
-        already
-
-        File 3 (irak4.wav) was processed for 110 seconds already
-
-        File
-        2 (irak4.wav) was processed for 80 seconds already
-
-        File 3 (irak4.wav)
-        was processed for 115 seconds already
-
-        File 2 (irak4.wav) was processed
-        for 85 seconds already
-
-        File 3 (irak4.wav) was processed for 120
-        seconds already
-
-        File 2 (irak4.wav) was processed for 90 seconds
-        already
-
-        File 3 (irak4.wav) was processed for 125 seconds already
-
-        File
-        2 (irak4.wav) was processed for 95 seconds already
-
-        File 3 (irak4.wav)
-        was processed for 130 seconds already
-
-        File 2 (irak4.wav) was processed
-        for 100 seconds already
-
-        File 3 (irak4.wav) was processed for 135
-        seconds already
-
-        File 2 (irak4.wav) was processed for 105 seconds
-        already
-
-        File 3 (irak4.wav) was processed for 140 seconds already
-
-        File
-        2 (irak4.wav) was processed for 110 seconds already
-
-        A meta data
-        file (.meta) exists but its asset ''Assets/Resources/testAudios/irak/irak4.srt''
-        can''t be found. When moving or deleting files outside of Unity, please ensure
-        that the corresponding .meta file is moved or deleted along with it.
-
-        Checking
-        file C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Assets/Resources/testAudios/irak/irak4.srt
-        with expected C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Assets/Resources/testOutputs/irak/irak4.srt
-
-'
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1012
-      parentUniqueId: PlayTests.dll/Tests/[PlayTests][suite]
-    - id: 1018
-      uniqueId: PlayTests.dll/Tests/PlayTests/[PlayTests][Tests.PlayTests.TestTranscriptionX]
-      name: TestTranscriptionX
-      fullName: Tests.PlayTests.TestTranscriptionX
-      resultStatus: 0
-      duration: 0
-      messages: Cancelled by user
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1012
-      parentUniqueId: PlayTests.dll/Tests/[PlayTests][suite]
-    m_ResultText: 'TestTranscriptionFolder (180,230s)
-
-      ---
-
-      Timeout value
-      of 180000ms was exceeded
-
-      ---
-
-      File 0 (irak1.wav) was processed
-      for 5 seconds already
-
-      File 1 (irak2.wav) was processed for 5 seconds
-      already
-
-      File 2 (irak3.wav) was processed for 5 seconds already
-
-      File
-      3 (irak4.wav) was processed for 5 seconds already
-
-      File 0 (irak1.wav)
-      was processed for 5 seconds already
-
-      File 0 (irak1.wav) was processed
-      for 10 seconds already
-
-      File 1 (irak2.wav) was processed for 10 seconds
-      already
-
-      File 2 (irak3.wav) was processed for 10 seconds already
-
-      File
-      3 (irak4.wav) was processed for 10 seconds already
-
-      File 0 (irak1.wav)
-      was processed for 10 seconds already
-
-      File 0 (irak1.wav) was processed
-      for 15 seconds already
-
-      File 1 (irak2.wav) was processed for 15 seconds
-      already
-
-      File 2 (irak3.wav) was processed for 15 seconds already
-
-      File
-      3 (irak4.wav) was processed for 15 seconds already
-
-      File 0 (irak1.wav)
-      was processed for 15 seconds already
-
-      File 0 (irak1.wav) was processed
-      for 20 seconds already
-
-      File 1 (irak2.wav) was processed for 20 seconds
-      already
-
-      File 2 (irak3.wav) was processed for 20 seconds already
-
-      File
-      3 (irak4.wav) was processed for 20 seconds already
-
-      File 0 (irak1.wav)
-      was processed for 20 seconds already
-
-      File 0 (irak1.wav) was processed
-      for 25 seconds already
-
-      File 1 (irak2.wav) was processed for 25 seconds
-      already
-
-      File 2 (irak3.wav) was processed for 25 seconds already
-
-      File
-      3 (irak4.wav) was processed for 25 seconds already
-
-      File 0 (irak1.wav)
-      was processed for 25 seconds already
-
-      File 0 (irak1.wav) was processed
-      for 30 seconds already
-
-      File 1 (irak2.wav) was processed for 30 seconds
-      already
-
-      File 2 (irak3.wav) was processed for 30 seconds already
-
-      File
-      3 (irak4.wav) was processed for 30 seconds already
-
-      Transcription of
-      file 0 (irak1.wav) is completed
-
-
-      Loading model from file C:/Users/Javi/Documents/Unity
-      Projects/DeepSpeechUnity/Assets/StreamingAssets/Languages/German.pbmm
-
-      TensorFlow:
-      v2.3.0-6-g23ad988fcd
-
-      DeepSpeech: v0.9.3-0-gf2e9c858
-
-      2022-11-13
-      19:13:13.327027: I tensorflow/core/platform/cpu_feature_guard.cc:142] This
-      TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN)to
-      use the following CPU instructions in performance-critical operations:  AVX2
-
-      To
-      enable them in other operations, rebuild TensorFlow with the appropriate compiler
-      flags.
-
-      Loaded model in 0.0157s.
-
-      Loading scorer from files C:/Users/Javi/Documents/Unity
-      Projects/DeepSpeechUnity/Assets/StreamingAssets/Languages/German.scorer
-
-      Loaded
-      scorer in 0.0215s.
-
-      Running inference.
-
-      Inference took 29.415s
-      for 33.268s audio file.
-
-
-
-      Executed client.py
-
-      path_to_save C:/Users/Javi/Documents/Unity
-      Projects/DeepSpeechUnity/Assets/Resources/testAudios/irak\irak1.srt
-
-      os.path.exists
-      True
-
-      os.path.isfile True
-
-      Successfully saved in C:/Users/Javi/Documents/Unity
-      Projects/DeepSpeechUnity/Assets/Resources/testAudios/irak\irak1.srt
-
-
-
-      A
-      meta data file (.meta) exists but its asset ''Assets/Resources/testAudios/irak/irak2.srt''
-      can''t be found. When moving or deleting files outside of Unity, please ensure
-      that the corresponding .meta file is moved or deleted along with it.
-
-      Checking
-      file C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Assets/Resources/testAudios/irak/irak2.srt
-      with expected C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Assets/Resources/testOutputs/irak/irak2.srt
-
-      A
-      meta data file (.meta) exists but its asset ''Assets/Resources/testAudios/irak/irak3.srt''
-      can''t be found. When moving or deleting files outside of Unity, please ensure
-      that the corresponding .meta file is moved or deleted along with it.
-
-      Checking
-      file C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Assets/Resources/testAudios/irak/irak3.srt
-      with expected C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Assets/Resources/testOutputs/irak/irak3.srt
-
-      File
-      3 (irak4.wav) was processed for 35 seconds already
-
-      File 2 (irak4.wav)
-      was processed for 5 seconds already
-
-      File 3 (irak4.wav) was processed
-      for 40 seconds already
-
-      File 2 (irak4.wav) was processed for 10 seconds
-      already
-
-      File 3 (irak4.wav) was processed for 45 seconds already
-
-      File
-      2 (irak4.wav) was processed for 15 seconds already
-
-      File 3 (irak4.wav)
-      was processed for 50 seconds already
-
-      File 2 (irak4.wav) was processed
-      for 20 seconds already
-
-      File 3 (irak4.wav) was processed for 55 seconds
-      already
-
-      File 2 (irak4.wav) was processed for 25 seconds already
-
-      File
-      3 (irak4.wav) was processed for 60 seconds already
-
-      File 2 (irak4.wav)
-      was processed for 30 seconds already
-
-      File 3 (irak4.wav) was processed
-      for 65 seconds already
-
-      File 2 (irak4.wav) was processed for 35 seconds
-      already
-
-      File 3 (irak4.wav) was processed for 70 seconds already
-
-      File
-      2 (irak4.wav) was processed for 40 seconds already
-
-      File 3 (irak4.wav)
-      was processed for 75 seconds already
-
-      File 2 (irak4.wav) was processed
-      for 45 seconds already
-
-      File 3 (irak4.wav) was processed for 80 seconds
-      already
-
-      File 2 (irak4.wav) was processed for 50 seconds already
-
-      File
-      3 (irak4.wav) was processed for 85 seconds already
-
-      File 2 (irak4.wav)
-      was processed for 55 seconds already
-
-      File 3 (irak4.wav) was processed
-      for 90 seconds already
-
-      File 2 (irak4.wav) was processed for 60 seconds
-      already
-
-      File 3 (irak4.wav) was processed for 95 seconds already
-
-      File
-      2 (irak4.wav) was processed for 65 seconds already
-
-      File 3 (irak4.wav)
-      was processed for 100 seconds already
-
-      File 2 (irak4.wav) was processed
-      for 70 seconds already
-
-      File 3 (irak4.wav) was processed for 105 seconds
-      already
-
-      File 2 (irak4.wav) was processed for 75 seconds already
-
-      File
-      3 (irak4.wav) was processed for 110 seconds already
-
-      File 2 (irak4.wav)
-      was processed for 80 seconds already
-
-      File 3 (irak4.wav) was processed
-      for 115 seconds already
-
-      File 2 (irak4.wav) was processed for 85 seconds
-      already
-
-      File 3 (irak4.wav) was processed for 120 seconds already
-
-      File
-      2 (irak4.wav) was processed for 90 seconds already
-
-      File 3 (irak4.wav)
-      was processed for 125 seconds already
-
-      File 2 (irak4.wav) was processed
-      for 95 seconds already
-
-      File 3 (irak4.wav) was processed for 130 seconds
-      already
-
-      File 2 (irak4.wav) was processed for 100 seconds already
-
-      File
-      3 (irak4.wav) was processed for 135 seconds already
-
-      File 2 (irak4.wav)
-      was processed for 105 seconds already
-
-      File 3 (irak4.wav) was processed
-      for 140 seconds already
-
-      File 2 (irak4.wav) was processed for 110 seconds
-      already
-
-      A meta data file (.meta) exists but its asset ''Assets/Resources/testAudios/irak/irak4.srt''
-      can''t be found. When moving or deleting files outside of Unity, please ensure
-      that the corresponding .meta file is moved or deleted along with it.
-
-      Checking
-      file C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Assets/Resources/testAudios/irak/irak4.srt
-      with expected C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Assets/Resources/testOutputs/irak/irak4.srt'
-    m_ResultStacktrace: 
-    m_TestListState:
-      scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: a31c4808
-      m_LastClickedID: 138943651
-      m_ExpandedIDs: 05004889adcea7935efec199716b5456ffffff7f
-      m_RenameOverlay:
-        m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
-        m_EditFieldRect:
-          serializedVersion: 2
-          x: 0
-          y: 0
-          width: 0
-          height: 0
-        m_UserData: 0
-        m_IsWaitingForDelay: 0
-        m_IsRenaming: 0
-        m_OriginalEventType: 11
-        m_IsRenamingFilename: 0
-        m_ClientGUIView: {fileID: 0}
-      m_SearchString: 
-    m_TestRunnerUIFilter:
-      PassedHidden: 0
-      FailedHidden: 0
-      NotRunHidden: 0
-      m_SearchString: 
-      selectedCategoryMask: 0
-      availableCategories:
-      - Uncategorized
-    m_SelectedOption: 0
-  m_EditModeTestListGUI:
-    m_Window: {fileID: 22}
-    m_NewResultList:
-    - id: 1000
-      uniqueId: '[DeepSpeechUnity][suite]'
-      name: DeepSpeechUnity
-      fullName: DeepSpeechUnity
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 
-      parentUniqueId: 
-    - id: 1006
-      uniqueId: '[EditTests.dll][suite]'
-      name: EditTests.dll
-      fullName: C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Library/ScriptAssemblies/EditTests.dll
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1000
-      parentUniqueId: '[DeepSpeechUnity][suite]'
-    - id: 1007
-      uniqueId: EditTests.dll/[EditTests][Tests][suite]
-      name: Tests
-      fullName: Tests
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1006
-      parentUniqueId: '[EditTests.dll][suite]'
-    - id: 1001
-      uniqueId: EditTests.dll/Tests/[EditTests][suite]
-      name: EditTests
-      fullName: Tests.EditTests
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1007
-      parentUniqueId: EditTests.dll/[EditTests][Tests][suite]
-    - id: 1002
-      uniqueId: EditTests.dll/Tests/EditTests/[EditTests][Tests.EditTests.EditTestsSimplePasses]
-      name: EditTestsSimplePasses
-      fullName: Tests.EditTests.EditTestsSimplePasses
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1001
-      parentUniqueId: EditTests.dll/Tests/[EditTests][suite]
-    - id: 1003
-      uniqueId: EditTests.dll/Tests/EditTests/[EditTests][Tests.EditTests.TestAudioRegex]
-      name: TestAudioRegex
-      fullName: Tests.EditTests.TestAudioRegex
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1001
-      parentUniqueId: EditTests.dll/Tests/[EditTests][suite]
-    - id: 1004
-      uniqueId: EditTests.dll/Tests/EditTests/[EditTests][Tests.EditTests.TestDefaultOptions]
-      name: TestDefaultOptions
-      fullName: Tests.EditTests.TestDefaultOptions
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1001
-      parentUniqueId: EditTests.dll/Tests/[EditTests][suite]
-    - id: 1005
-      uniqueId: EditTests.dll/Tests/EditTests/[EditTests][Tests.EditTests.TestFakeVideoRegex]
-      name: TestFakeVideoRegex
-      fullName: Tests.EditTests.TestFakeVideoRegex
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1001
-      parentUniqueId: EditTests.dll/Tests/[EditTests][suite]
-    m_ResultText: 
-    m_ResultStacktrace: 
-    m_TestListState:
-      scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: b957b166
-      m_LastClickedID: 1722898361
-      m_ExpandedIDs: 0c219c87adcea793348ec199d998f21affffff7f
-      m_RenameOverlay:
-        m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
-        m_EditFieldRect:
-          serializedVersion: 2
-          x: 0
-          y: 0
-          width: 0
-          height: 0
-        m_UserData: 0
-        m_IsWaitingForDelay: 0
-        m_IsRenaming: 0
-        m_OriginalEventType: 11
-        m_IsRenamingFilename: 0
-        m_ClientGUIView: {fileID: 0}
-      m_SearchString: 
-    m_TestRunnerUIFilter:
-      PassedHidden: 0
-      FailedHidden: 0
-      NotRunHidden: 0
-      m_SearchString: 
-      selectedCategoryMask: 0
-      availableCategories:
-      - Uncategorized

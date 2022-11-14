@@ -168,7 +168,7 @@ def main():
             ds.addHotWord(word,float(boost))
 
     if args.audio[-3:] != "wav":
-        print("Video detectect, extracting audio file")
+        print("Video detected, extracting audio file")
         args.audio = get_audio_from_file(args.audio)
 
     fin = wave.open(args.audio, 'rb')
