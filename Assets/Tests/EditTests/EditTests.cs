@@ -23,7 +23,7 @@ namespace Tests
         {
             var gameObject = new GameObject();
             TranscripterScript ts = gameObject.AddComponent<TranscripterScript>();
-            Assert.AreEqual(ts.GetAudioRegex(), @"\.(3gp|aa|aac|act|aiff|alac|amr|ape|au|awb|dss|dvf|flac|gsm|iklax|ivs|m4a|m4b|m4p|mmf|mp3|mpc|msv|mpc|msv|nmf|ogg|oga|mogg|opus|ra|rm|raw|rf64|sln|tta|voc|vox|wav|wma|wv|webm|8svx|cda)");
+            Assert.AreEqual(ts.AudioRegex, @"\.(3gp|aa|aac|act|aiff|alac|amr|ape|au|awb|dss|dvf|flac|gsm|iklax|ivs|m4a|m4b|m4p|mmf|mp3|mpc|msv|mpc|msv|nmf|ogg|oga|mogg|opus|ra|rm|raw|rf64|sln|tta|voc|vox|wav|wma|wv|webm|8svx|cda)");
             // Use the Assert class to test conditions.
             // Use yield to skip a frame.
 

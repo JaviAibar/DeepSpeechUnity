@@ -19,12 +19,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 30
-    width: 1902
-    height: 921
-  m_MinSize: {x: 300, y: 300}
-  m_MaxSize: {x: 24288, y: 24288}
+    width: 1920
+    height: 939
+  m_MinSize: {x: 300, y: 200}
+  m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 682
+  controlID: 41
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -33,11 +33,11 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
-  m_EditorHideFlags: 1
+  m_EditorHideFlags: 0
   m_Script: {fileID: 12015, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MinSize: {x: 200, y: 200}
+  m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
     m_Text: Game
@@ -45,10 +45,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1462
-    y: 822
-    width: 449
-    height: 159
+    x: 363
+    y: 73
+    width: 1100
+    height: 169
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -59,7 +59,7 @@ MonoBehaviour:
   m_ShowGizmos: 0
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
-  m_TargetSize: {x: 449, y: 138}
+  m_TargetSize: {x: 1100, y: 148}
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
@@ -74,10 +74,10 @@ MonoBehaviour:
     m_VRangeLocked: 0
     hZoomLockedByDefault: 0
     vZoomLockedByDefault: 0
-    m_HBaseRangeMin: -224.5
-    m_HBaseRangeMax: 224.5
-    m_VBaseRangeMin: -69
-    m_VBaseRangeMax: 69
+    m_HBaseRangeMin: -550
+    m_HBaseRangeMax: 550
+    m_VBaseRangeMin: -74
+    m_VBaseRangeMax: 74
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -86,7 +86,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 1
+    m_EnableMouseInput: 0
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -95,23 +95,23 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
-      width: 449
-      height: 138
+      width: 1100
+      height: 148
     m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 224.5, y: 69}
+    m_Translation: {x: 550, y: 74}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -224.5
-      y: -69
-      width: 449
-      height: 138
+      x: -550
+      y: -74
+      width: 1100
+      height: 148
     m_MinimalGUI: 1
   m_defaultScale: 1
-  m_LastWindowPixelSize: {x: 449, y: 159}
+  m_LastWindowPixelSize: {x: 1100, y: 169}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
@@ -136,12 +136,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1452
-    height: 921
+    width: 1465
+    height: 939
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 683
+  controlID: 42
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -161,12 +161,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1452
-    height: 545
+    width: 1465
+    height: 190
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 684
+  controlID: 43
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -184,8 +184,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 360
-    height: 545
+    width: 363
+    height: 190
   m_MinSize: {x: 201, y: 221}
   m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 6}
@@ -213,10 +213,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 10
-    y: 81
-    width: 359
-    height: 524
+    x: 0
+    y: 73
+    width: 362
+    height: 169
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -224,9 +224,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: fc93ffff
-      m_LastClickedID: -27652
-      m_ExpandedIDs: 866affffe879fffffa79ffff8493ffffae93ffffb693ffffd693ffffdc93ffffe093fffffc93ffff5294ffff7a94ffff9094ffff6495ffff6c95ffff7695ffff7c95ffffd695ffffd89bffff42fbffff7ac30000
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 04eafdff56eafdffaceffdff5af4fdffaef4fdffbafefdff4e03feffa203feffee04feffec0afeff400bfeff8a0cfeff1012feff6412feffde1cfeff5c21feffac21feff622dfeffb62dfeffc237feff0c40feff6040feff6c4afeffea4efeff3e4ffefff059feff6e5efeffbe5efeff3e69feff9269feffc473feffb478feff0879feff3a83feff5288feffa688feffb292feff3a98feff8e98feffbea2feff12a8feff66a8feff96b2feff16b7feff6ab7feff76c1feff80c6feffd2c6feff56c7feff0cccfeff60ccfeff6cd6feffecdafeff40dbfeff4ce5feffcce9feff20eafeff2cf4feffacf8feff00f9feffae03ffff3e08ffff9208ffffc212ffff4017ffff9417ffffc221ffffd426ffff2827ffff7c31ffffc236ffff1637ffff4641ffffe246ffff3647ffff6651ffff7856ffffcc56fffffc60ffff7c65ffffd065ffff0070ffff0a75ffff5e75ffff8e7fffff1484ffff6884ffff988effff1694ffff6894ffffec94ffff2e9affff829affffb4a4ffff34a9ffff88a9ffffbab3ffffd2b8ffff24b9ffffa8b9ffff2cc0ffff80c0ffffb2caffff94d0ffffe8d0ffff1cdbffff30fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -242,7 +242,7 @@ MonoBehaviour:
         m_IsRenaming: 0
         m_OriginalEventType: 11
         m_IsRenamingFilename: 0
-        m_ClientGUIView: {fileID: 5}
+        m_ClientGUIView: {fileID: 0}
       m_SearchString: 
     m_ExpandedScenes: []
     m_CurrenRootInstanceID: 0
@@ -260,21 +260,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: SceneView
+  m_Name: GameView
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 360
+    x: 363
     y: 0
-    width: 1092
-    height: 545
-  m_MinSize: {x: 202, y: 221}
+    width: 1102
+    height: 190
+  m_MinSize: {x: 102, y: 121}
   m_MaxSize: {x: 4002, y: 4021}
-  m_ActualView: {fileID: 8}
+  m_ActualView: {fileID: 2}
   m_Panes:
   - {fileID: 8}
-  m_Selected: 0
+  - {fileID: 2}
+  m_Selected: 1
   m_LastSelected: 0
 --- !u!114 &8
 MonoBehaviour:
@@ -296,10 +297,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 370
-    y: 81
-    width: 1090
-    height: 524
+    x: 363
+    y: 73
+    width: 1100
+    height: 169
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -321,7 +322,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 1
       snapOffset: {x: -141, y: 149}
-      snapOffsetDelta: {x: 0, y: 0}
+      snapOffsetDelta: {x: 0, y: -6}
       snapCorner: 1
       id: unity-grid-and-snap-toolbar
       index: 1
@@ -387,7 +388,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 1
       snapOffset: {x: 67.5, y: 86}
-      snapOffsetDelta: {x: 0, y: 0}
+      snapOffsetDelta: {x: 0, y: -40}
       snapCorner: 0
       id: Orientation
       index: 0
@@ -523,9 +524,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 149.41223, y: 109.54668, z: 0}
+    m_Target: {x: 532.4697, y: 390.5856, z: 7.799011}
     speed: 2
-    m_Value: {x: 149.41223, y: 109.54668, z: 0}
+    m_Value: {x: 532.4697, y: 390.5856, z: 7.799011}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -572,17 +573,17 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0, y: 0, z: 0, w: 1}
+    m_Target: {x: -0.0014999995, y: 0, z: 0, w: 0.99999887}
     speed: 2
-    m_Value: {x: 0, y: 0, z: 0, w: 1}
+    m_Value: {x: -0.0014999995, y: 0, z: 0, w: 0.99999887}
   m_Size:
-    m_Target: 69.62478
+    m_Target: 288.22583
     speed: 2
-    m_Value: 69.62478
+    m_Value: 288.22583
   m_Ortho:
-    m_Target: 0
+    m_Target: 1
     speed: 2
-    m_Value: 0
+    m_Value: 1
   m_CameraSettings:
     m_Speed: 1
     m_SpeedNormalized: 0.5
@@ -621,13 +622,13 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 545
-    width: 1452
-    height: 376
+    y: 190
+    width: 1465
+    height: 749
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 640
+  controlID: 85
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -645,8 +646,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 663
-    height: 376
+    width: 389
+    height: 749
   m_MinSize: {x: 231, y: 271}
   m_MaxSize: {x: 10001, y: 10021}
   m_ActualView: {fileID: 11}
@@ -674,10 +675,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 10
-    y: 626
-    width: 662
-    height: 355
+    x: 0
+    y: 263
+    width: 388
+    height: 728
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -699,18 +700,18 @@ MonoBehaviour:
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
-  m_StartGridSize: 16
+  m_StartGridSize: 96
   m_LastFolders:
   - Assets/Transcripter
-  m_LastFoldersGridSize: 16
+  m_LastFoldersGridSize: 96
   m_LastProjectPath: C:\Users\Javi\Documents\Unity Projects\DeepSpeechUnity
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 33}
-    m_SelectedIDs: 1eb70000
-    m_LastClickedID: 46878
-    m_ExpandedIDs: 0000000008b700000ab700001ab7000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 74630000
+    m_LastClickedID: 25460
+    m_ExpandedIDs: 000000004c6300004e63000050630000526300005463000056630000586300005a63000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -726,7 +727,7 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 0}
+      m_ClientGUIView: {fileID: 10}
     m_SearchString: 
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
@@ -738,7 +739,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000008b700000ab700001ab7000000ca9a3bffffff7f
+    m_ExpandedIDs: 000000004c6300004e63000050630000526300005463000056630000586300005a630000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -763,8 +764,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: fc93ffff
-    m_LastClickedInstanceID: -27652
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:
@@ -782,7 +783,7 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 0}
+      m_ClientGUIView: {fileID: 10}
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
       m_InstanceID: 0
@@ -791,9 +792,9 @@ MonoBehaviour:
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
     m_ScrollPosition: {x: 0, y: 0}
-    m_GridSize: 16
+    m_GridSize: 96
   m_SkipHiddenPackages: 0
-  m_DirectoriesAreaWidth: 207
+  m_DirectoriesAreaWidth: 143
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -809,10 +810,10 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 663
+    x: 389
     y: 0
-    width: 789
-    height: 376
+    width: 1076
+    height: 749
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 13}
@@ -840,10 +841,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 673
-    y: 626
-    width: 787
-    height: 355
+    x: 390
+    y: 19
+    width: 1074
+    height: 728
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -863,17 +864,16 @@ MonoBehaviour:
   m_Children:
   - {fileID: 15}
   - {fileID: 17}
-  - {fileID: 19}
   m_Position:
     serializedVersion: 2
-    x: 1452
+    x: 1465
     y: 0
-    width: 450
-    height: 921
-  m_MinSize: {x: 100, y: 300}
-  m_MaxSize: {x: 8096, y: 24288}
+    width: 455
+    height: 939
+  m_MinSize: {x: 100, y: 200}
+  m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 11532
+  controlID: 137
 --- !u!114 &15
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -891,8 +891,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 450
-    height: 382
+    width: 455
+    height: 428
   m_MinSize: {x: 275, y: 50}
   m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 16}
@@ -920,10 +920,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1462
-    y: 81
-    width: 449
-    height: 361
+    x: 1
+    y: 19
+    width: 454
+    height: 407
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -931,11 +931,11 @@ MonoBehaviour:
   m_ObjectsLockedBeforeSerialization: []
   m_InstanceIDsLockedBeforeSerialization: 
   m_PreviewResizer:
-    m_CachedPref: -160
+    m_CachedPref: 160
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 432
+  m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:
@@ -957,9 +957,9 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 382
-    width: 450
-    height: 359
+    y: 428
+    width: 455
+    height: 511
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 18}
@@ -987,31 +987,31 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1462
-    y: 463
-    width: 449
-    height: 338
+    x: 1
+    y: 447
+    width: 454
+    height: 490
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
     m_SaveData: []
   m_Spl:
-    ID: 916
-    splitterInitialOffset: 0
+    ID: 210
+    splitterInitialOffset: 290
     currentActiveSplitter: -1
     realSizes:
-    - 201
-    - 67
+    - 220
+    - 200
     relativeSizes:
-    - 0.75
-    - 0.25
+    - 0.52380955
+    - 0.47619045
     minSizes:
     - 32
     - 32
     maxSizes:
     - 0
     - 0
-    lastTotalSize: 268
+    lastTotalSize: 420
     splitSize: 6
     xOffset: 0
     m_Version: 1
@@ -1028,7 +1028,7 @@ MonoBehaviour:
       name: DeepSpeechUnity
       fullName: DeepSpeechUnity
       resultStatus: 1
-      duration: 1.465011
+      duration: 4.8776245
       messages: 
       output: 
       stacktrace: 
@@ -1039,12 +1039,12 @@ MonoBehaviour:
       categories: []
       parentId: 
       parentUniqueId: 
-    - id: 1017
+    - id: 1019
       uniqueId: '[PlayTests.dll][suite]'
       name: PlayTests.dll
       fullName: C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Library/ScriptAssemblies/PlayTests.dll
       resultStatus: 1
-      duration: 1.1391045
+      duration: 4.6543126
       messages: 
       output: 
       stacktrace: 
@@ -1055,12 +1055,12 @@ MonoBehaviour:
       categories: []
       parentId: 1011
       parentUniqueId: '[DeepSpeechUnity][suite]'
-    - id: 1018
+    - id: 1020
       uniqueId: PlayTests.dll/[PlayTests][Tests][suite]
       name: Tests
       fullName: Tests
       resultStatus: 1
-      duration: 1.1259176
+      duration: 4.641151
       messages: 
       output: 
       stacktrace: 
@@ -1069,14 +1069,14 @@ MonoBehaviour:
       description: 
       isSuite: 1
       categories: []
-      parentId: 1017
+      parentId: 1019
       parentUniqueId: '[PlayTests.dll][suite]'
     - id: 1012
       uniqueId: PlayTests.dll/Tests/[PlayTests][suite]
       name: PlayTests
       fullName: Tests.PlayTests
       resultStatus: 1
-      duration: 1.1158952
+      duration: 4.6374784
       messages: 
       output: 'You are trying to create a MonoBehaviour using the ''new'' keyword. 
         This is not allowed.  MonoBehaviours can only be added using AddComponent().
@@ -1090,14 +1090,14 @@ MonoBehaviour:
       description: 
       isSuite: 1
       categories: []
-      parentId: 1018
+      parentId: 1020
       parentUniqueId: PlayTests.dll/[PlayTests][Tests][suite]
     - id: 1013
       uniqueId: PlayTests.dll/Tests/PlayTests/[PlayTests][Tests.PlayTests.PlayTestsSimplePasses]
       name: PlayTestsSimplePasses
       fullName: Tests.PlayTests.PlayTestsSimplePasses
-      resultStatus: 0
-      duration: 0
+      resultStatus: 1
+      duration: 0.0089001
       messages: 
       output: 
       stacktrace: 
@@ -1113,8 +1113,8 @@ MonoBehaviour:
       uniqueId: PlayTests.dll/Tests/PlayTests/[PlayTests][Tests.PlayTests.PlayTestsWithEnumeratorPasses]
       name: PlayTestsWithEnumeratorPasses
       fullName: Tests.PlayTests.PlayTestsWithEnumeratorPasses
-      resultStatus: 0
-      duration: 0
+      resultStatus: 1
+      duration: 0.0105223
       messages: 
       output: 
       stacktrace: 
@@ -1130,8 +1130,8 @@ MonoBehaviour:
       uniqueId: PlayTests.dll/Tests/PlayTests/[PlayTests][Tests.PlayTests.TestPrintToOutput]
       name: TestPrintToOutput
       fullName: Tests.PlayTests.TestPrintToOutput
-      resultStatus: 0
-      duration: 0
+      resultStatus: 1
+      duration: 1.0265932
       messages: 
       output: 
       stacktrace: 
@@ -1142,14 +1142,403 @@ MonoBehaviour:
       categories:
       - Uncategorized
       parentId: 1012
+      parentUniqueId: PlayTests.dll/Tests/[PlayTests][suite]
+    - id: 1005
+      uniqueId: PlayTests.dll/Tests/PlayTests/[PlayTests][Tests.PlayTests.TestPrintToOutputError]
+      name: TestPrintToOutputError
+      fullName: Tests.PlayTests.TestPrintToOutputError
+      resultStatus: 1
+      duration: 1.01982
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
       parentUniqueId: PlayTests.dll/Tests/[PlayTests][suite]
     - id: 1016
       uniqueId: PlayTests.dll/Tests/PlayTests/[PlayTests][Tests.PlayTests.TestTranscription1]
       name: TestTranscription1
       fullName: Tests.PlayTests.TestTranscription1
       resultStatus: 1
-      duration: 1.0489835
+      duration: 4.59667
       messages: 
+      output: 'Transcription of file 0 (test_kirche.wav) is completed
+
+
+        Loading
+        model from file C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Assets/StreamingAssets/Languages/German.pbmm
+
+        TensorFlow:
+        v2.3.0-6-g23ad988fcd
+
+        DeepSpeech: v0.9.3-0-gf2e9c858
+
+        2022-11-13
+        19:24:56.940554: I tensorflow/core/platform/cpu_feature_guard.cc:142] This
+        TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN)to
+        use the following CPU instructions in performance-critical operations:  AVX2
+
+        To
+        enable them in other operations, rebuild TensorFlow with the appropriate
+        compiler flags.
+
+        Loaded model in 0.0106s.
+
+        Loading scorer
+        from files C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Assets/StreamingAssets/Languages/German.scorer
+
+        Loaded
+        scorer in 0.0122s.
+
+        Running inference.
+
+        Inference took
+        2.880s for 5.700s audio file.
+
+
+
+        Executed client.py
+
+        path_to_save
+        C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Assets/Resources/testAudios\test_kirche.srt
+
+        os.path.exists
+        True
+
+        os.path.isfile True
+
+        Successfully saved in C:/Users/Javi/Documents/Unity
+        Projects/DeepSpeechUnity/Assets/Resources/testAudios\test_kirche.srt
+
+        
+
+        Checking
+        file C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Assets/Resources/testAudios/test_kirche.srt
+        with expected C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Assets/Resources/testOutputs/test_kirche.srt
+
+'
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1012
+      parentUniqueId: PlayTests.dll/Tests/[PlayTests][suite]
+    - id: 1017
+      uniqueId: PlayTests.dll/Tests/PlayTests/[PlayTests][Tests.PlayTests.TestTranscriptionFolder]
+      name: TestTranscriptionFolder
+      fullName: Tests.PlayTests.TestTranscriptionFolder
+      resultStatus: 2
+      duration: 180.22987
+      messages: Timeout value of 180000ms was exceeded
+      output: 'File 0 (irak1.wav) was processed for 5 seconds already
+
+        File
+        1 (irak2.wav) was processed for 5 seconds already
+
+        File 2 (irak3.wav)
+        was processed for 5 seconds already
+
+        File 3 (irak4.wav) was processed
+        for 5 seconds already
+
+        File 0 (irak1.wav) was processed for 5 seconds
+        already
+
+        File 0 (irak1.wav) was processed for 10 seconds already
+
+        File
+        1 (irak2.wav) was processed for 10 seconds already
+
+        File 2 (irak3.wav)
+        was processed for 10 seconds already
+
+        File 3 (irak4.wav) was processed
+        for 10 seconds already
+
+        File 0 (irak1.wav) was processed for 10
+        seconds already
+
+        File 0 (irak1.wav) was processed for 15 seconds
+        already
+
+        File 1 (irak2.wav) was processed for 15 seconds already
+
+        File
+        2 (irak3.wav) was processed for 15 seconds already
+
+        File 3 (irak4.wav)
+        was processed for 15 seconds already
+
+        File 0 (irak1.wav) was processed
+        for 15 seconds already
+
+        File 0 (irak1.wav) was processed for 20
+        seconds already
+
+        File 1 (irak2.wav) was processed for 20 seconds
+        already
+
+        File 2 (irak3.wav) was processed for 20 seconds already
+
+        File
+        3 (irak4.wav) was processed for 20 seconds already
+
+        File 0 (irak1.wav)
+        was processed for 20 seconds already
+
+        File 0 (irak1.wav) was processed
+        for 25 seconds already
+
+        File 1 (irak2.wav) was processed for 25
+        seconds already
+
+        File 2 (irak3.wav) was processed for 25 seconds
+        already
+
+        File 3 (irak4.wav) was processed for 25 seconds already
+
+        File
+        0 (irak1.wav) was processed for 25 seconds already
+
+        File 0 (irak1.wav)
+        was processed for 30 seconds already
+
+        File 1 (irak2.wav) was processed
+        for 30 seconds already
+
+        File 2 (irak3.wav) was processed for 30
+        seconds already
+
+        File 3 (irak4.wav) was processed for 30 seconds
+        already
+
+        Transcription of file 0 (irak1.wav) is completed
+
+
+        Loading
+        model from file C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Assets/StreamingAssets/Languages/German.pbmm
+
+        TensorFlow:
+        v2.3.0-6-g23ad988fcd
+
+        DeepSpeech: v0.9.3-0-gf2e9c858
+
+        2022-11-13
+        19:13:13.327027: I tensorflow/core/platform/cpu_feature_guard.cc:142] This
+        TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN)to
+        use the following CPU instructions in performance-critical operations:  AVX2
+
+        To
+        enable them in other operations, rebuild TensorFlow with the appropriate
+        compiler flags.
+
+        Loaded model in 0.0157s.
+
+        Loading scorer
+        from files C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Assets/StreamingAssets/Languages/German.scorer
+
+        Loaded
+        scorer in 0.0215s.
+
+        Running inference.
+
+        Inference took
+        29.415s for 33.268s audio file.
+
+
+
+        Executed client.py
+
+        path_to_save
+        C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Assets/Resources/testAudios/irak\irak1.srt
+
+        os.path.exists
+        True
+
+        os.path.isfile True
+
+        Successfully saved in C:/Users/Javi/Documents/Unity
+        Projects/DeepSpeechUnity/Assets/Resources/testAudios/irak\irak1.srt
+
+        
+
+        A
+        meta data file (.meta) exists but its asset ''Assets/Resources/testAudios/irak/irak2.srt''
+        can''t be found. When moving or deleting files outside of Unity, please ensure
+        that the corresponding .meta file is moved or deleted along with it.
+
+        Checking
+        file C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Assets/Resources/testAudios/irak/irak2.srt
+        with expected C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Assets/Resources/testOutputs/irak/irak2.srt
+
+        A
+        meta data file (.meta) exists but its asset ''Assets/Resources/testAudios/irak/irak3.srt''
+        can''t be found. When moving or deleting files outside of Unity, please ensure
+        that the corresponding .meta file is moved or deleted along with it.
+
+        Checking
+        file C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Assets/Resources/testAudios/irak/irak3.srt
+        with expected C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Assets/Resources/testOutputs/irak/irak3.srt
+
+        File
+        3 (irak4.wav) was processed for 35 seconds already
+
+        File 2 (irak4.wav)
+        was processed for 5 seconds already
+
+        File 3 (irak4.wav) was processed
+        for 40 seconds already
+
+        File 2 (irak4.wav) was processed for 10
+        seconds already
+
+        File 3 (irak4.wav) was processed for 45 seconds
+        already
+
+        File 2 (irak4.wav) was processed for 15 seconds already
+
+        File
+        3 (irak4.wav) was processed for 50 seconds already
+
+        File 2 (irak4.wav)
+        was processed for 20 seconds already
+
+        File 3 (irak4.wav) was processed
+        for 55 seconds already
+
+        File 2 (irak4.wav) was processed for 25
+        seconds already
+
+        File 3 (irak4.wav) was processed for 60 seconds
+        already
+
+        File 2 (irak4.wav) was processed for 30 seconds already
+
+        File
+        3 (irak4.wav) was processed for 65 seconds already
+
+        File 2 (irak4.wav)
+        was processed for 35 seconds already
+
+        File 3 (irak4.wav) was processed
+        for 70 seconds already
+
+        File 2 (irak4.wav) was processed for 40
+        seconds already
+
+        File 3 (irak4.wav) was processed for 75 seconds
+        already
+
+        File 2 (irak4.wav) was processed for 45 seconds already
+
+        File
+        3 (irak4.wav) was processed for 80 seconds already
+
+        File 2 (irak4.wav)
+        was processed for 50 seconds already
+
+        File 3 (irak4.wav) was processed
+        for 85 seconds already
+
+        File 2 (irak4.wav) was processed for 55
+        seconds already
+
+        File 3 (irak4.wav) was processed for 90 seconds
+        already
+
+        File 2 (irak4.wav) was processed for 60 seconds already
+
+        File
+        3 (irak4.wav) was processed for 95 seconds already
+
+        File 2 (irak4.wav)
+        was processed for 65 seconds already
+
+        File 3 (irak4.wav) was processed
+        for 100 seconds already
+
+        File 2 (irak4.wav) was processed for 70
+        seconds already
+
+        File 3 (irak4.wav) was processed for 105 seconds
+        already
+
+        File 2 (irak4.wav) was processed for 75 seconds already
+
+        File
+        3 (irak4.wav) was processed for 110 seconds already
+
+        File 2 (irak4.wav)
+        was processed for 80 seconds already
+
+        File 3 (irak4.wav) was processed
+        for 115 seconds already
+
+        File 2 (irak4.wav) was processed for 85
+        seconds already
+
+        File 3 (irak4.wav) was processed for 120 seconds
+        already
+
+        File 2 (irak4.wav) was processed for 90 seconds already
+
+        File
+        3 (irak4.wav) was processed for 125 seconds already
+
+        File 2 (irak4.wav)
+        was processed for 95 seconds already
+
+        File 3 (irak4.wav) was processed
+        for 130 seconds already
+
+        File 2 (irak4.wav) was processed for 100
+        seconds already
+
+        File 3 (irak4.wav) was processed for 135 seconds
+        already
+
+        File 2 (irak4.wav) was processed for 105 seconds already
+
+        File
+        3 (irak4.wav) was processed for 140 seconds already
+
+        File 2 (irak4.wav)
+        was processed for 110 seconds already
+
+        A meta data file (.meta)
+        exists but its asset ''Assets/Resources/testAudios/irak/irak4.srt'' can''t
+        be found. When moving or deleting files outside of Unity, please ensure that
+        the corresponding .meta file is moved or deleted along with it.
+
+        Checking
+        file C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Assets/Resources/testAudios/irak/irak4.srt
+        with expected C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Assets/Resources/testOutputs/irak/irak4.srt
+
+'
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1012
+      parentUniqueId: PlayTests.dll/Tests/[PlayTests][suite]
+    - id: 1018
+      uniqueId: PlayTests.dll/Tests/PlayTests/[PlayTests][Tests.PlayTests.TestTranscriptionX]
+      name: TestTranscriptionX
+      fullName: Tests.PlayTests.TestTranscriptionX
+      resultStatus: 0
+      duration: 0
+      messages: Cancelled by user
       output: 
       stacktrace: 
       notRunnable: 0
@@ -1160,12 +1549,301 @@ MonoBehaviour:
       - Uncategorized
       parentId: 1012
       parentUniqueId: PlayTests.dll/Tests/[PlayTests][suite]
-    m_ResultText: DeepSpeechUnity (1,465s)
+    m_ResultText: 'TestTranscriptionFolder (180,230s)
+
+      ---
+
+      Timeout value
+      of 180000ms was exceeded
+
+      ---
+
+      File 0 (irak1.wav) was processed
+      for 5 seconds already
+
+      File 1 (irak2.wav) was processed for 5 seconds
+      already
+
+      File 2 (irak3.wav) was processed for 5 seconds already
+
+      File
+      3 (irak4.wav) was processed for 5 seconds already
+
+      File 0 (irak1.wav)
+      was processed for 5 seconds already
+
+      File 0 (irak1.wav) was processed
+      for 10 seconds already
+
+      File 1 (irak2.wav) was processed for 10 seconds
+      already
+
+      File 2 (irak3.wav) was processed for 10 seconds already
+
+      File
+      3 (irak4.wav) was processed for 10 seconds already
+
+      File 0 (irak1.wav)
+      was processed for 10 seconds already
+
+      File 0 (irak1.wav) was processed
+      for 15 seconds already
+
+      File 1 (irak2.wav) was processed for 15 seconds
+      already
+
+      File 2 (irak3.wav) was processed for 15 seconds already
+
+      File
+      3 (irak4.wav) was processed for 15 seconds already
+
+      File 0 (irak1.wav)
+      was processed for 15 seconds already
+
+      File 0 (irak1.wav) was processed
+      for 20 seconds already
+
+      File 1 (irak2.wav) was processed for 20 seconds
+      already
+
+      File 2 (irak3.wav) was processed for 20 seconds already
+
+      File
+      3 (irak4.wav) was processed for 20 seconds already
+
+      File 0 (irak1.wav)
+      was processed for 20 seconds already
+
+      File 0 (irak1.wav) was processed
+      for 25 seconds already
+
+      File 1 (irak2.wav) was processed for 25 seconds
+      already
+
+      File 2 (irak3.wav) was processed for 25 seconds already
+
+      File
+      3 (irak4.wav) was processed for 25 seconds already
+
+      File 0 (irak1.wav)
+      was processed for 25 seconds already
+
+      File 0 (irak1.wav) was processed
+      for 30 seconds already
+
+      File 1 (irak2.wav) was processed for 30 seconds
+      already
+
+      File 2 (irak3.wav) was processed for 30 seconds already
+
+      File
+      3 (irak4.wav) was processed for 30 seconds already
+
+      Transcription of
+      file 0 (irak1.wav) is completed
+
+
+      Loading model from file C:/Users/Javi/Documents/Unity
+      Projects/DeepSpeechUnity/Assets/StreamingAssets/Languages/German.pbmm
+
+      TensorFlow:
+      v2.3.0-6-g23ad988fcd
+
+      DeepSpeech: v0.9.3-0-gf2e9c858
+
+      2022-11-13
+      19:13:13.327027: I tensorflow/core/platform/cpu_feature_guard.cc:142] This
+      TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN)to
+      use the following CPU instructions in performance-critical operations:  AVX2
+
+      To
+      enable them in other operations, rebuild TensorFlow with the appropriate compiler
+      flags.
+
+      Loaded model in 0.0157s.
+
+      Loading scorer from files C:/Users/Javi/Documents/Unity
+      Projects/DeepSpeechUnity/Assets/StreamingAssets/Languages/German.scorer
+
+      Loaded
+      scorer in 0.0215s.
+
+      Running inference.
+
+      Inference took 29.415s
+      for 33.268s audio file.
+
+
+
+      Executed client.py
+
+      path_to_save C:/Users/Javi/Documents/Unity
+      Projects/DeepSpeechUnity/Assets/Resources/testAudios/irak\irak1.srt
+
+      os.path.exists
+      True
+
+      os.path.isfile True
+
+      Successfully saved in C:/Users/Javi/Documents/Unity
+      Projects/DeepSpeechUnity/Assets/Resources/testAudios/irak\irak1.srt
+
+      
+
+      A
+      meta data file (.meta) exists but its asset ''Assets/Resources/testAudios/irak/irak2.srt''
+      can''t be found. When moving or deleting files outside of Unity, please ensure
+      that the corresponding .meta file is moved or deleted along with it.
+
+      Checking
+      file C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Assets/Resources/testAudios/irak/irak2.srt
+      with expected C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Assets/Resources/testOutputs/irak/irak2.srt
+
+      A
+      meta data file (.meta) exists but its asset ''Assets/Resources/testAudios/irak/irak3.srt''
+      can''t be found. When moving or deleting files outside of Unity, please ensure
+      that the corresponding .meta file is moved or deleted along with it.
+
+      Checking
+      file C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Assets/Resources/testAudios/irak/irak3.srt
+      with expected C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Assets/Resources/testOutputs/irak/irak3.srt
+
+      File
+      3 (irak4.wav) was processed for 35 seconds already
+
+      File 2 (irak4.wav)
+      was processed for 5 seconds already
+
+      File 3 (irak4.wav) was processed
+      for 40 seconds already
+
+      File 2 (irak4.wav) was processed for 10 seconds
+      already
+
+      File 3 (irak4.wav) was processed for 45 seconds already
+
+      File
+      2 (irak4.wav) was processed for 15 seconds already
+
+      File 3 (irak4.wav)
+      was processed for 50 seconds already
+
+      File 2 (irak4.wav) was processed
+      for 20 seconds already
+
+      File 3 (irak4.wav) was processed for 55 seconds
+      already
+
+      File 2 (irak4.wav) was processed for 25 seconds already
+
+      File
+      3 (irak4.wav) was processed for 60 seconds already
+
+      File 2 (irak4.wav)
+      was processed for 30 seconds already
+
+      File 3 (irak4.wav) was processed
+      for 65 seconds already
+
+      File 2 (irak4.wav) was processed for 35 seconds
+      already
+
+      File 3 (irak4.wav) was processed for 70 seconds already
+
+      File
+      2 (irak4.wav) was processed for 40 seconds already
+
+      File 3 (irak4.wav)
+      was processed for 75 seconds already
+
+      File 2 (irak4.wav) was processed
+      for 45 seconds already
+
+      File 3 (irak4.wav) was processed for 80 seconds
+      already
+
+      File 2 (irak4.wav) was processed for 50 seconds already
+
+      File
+      3 (irak4.wav) was processed for 85 seconds already
+
+      File 2 (irak4.wav)
+      was processed for 55 seconds already
+
+      File 3 (irak4.wav) was processed
+      for 90 seconds already
+
+      File 2 (irak4.wav) was processed for 60 seconds
+      already
+
+      File 3 (irak4.wav) was processed for 95 seconds already
+
+      File
+      2 (irak4.wav) was processed for 65 seconds already
+
+      File 3 (irak4.wav)
+      was processed for 100 seconds already
+
+      File 2 (irak4.wav) was processed
+      for 70 seconds already
+
+      File 3 (irak4.wav) was processed for 105 seconds
+      already
+
+      File 2 (irak4.wav) was processed for 75 seconds already
+
+      File
+      3 (irak4.wav) was processed for 110 seconds already
+
+      File 2 (irak4.wav)
+      was processed for 80 seconds already
+
+      File 3 (irak4.wav) was processed
+      for 115 seconds already
+
+      File 2 (irak4.wav) was processed for 85 seconds
+      already
+
+      File 3 (irak4.wav) was processed for 120 seconds already
+
+      File
+      2 (irak4.wav) was processed for 90 seconds already
+
+      File 3 (irak4.wav)
+      was processed for 125 seconds already
+
+      File 2 (irak4.wav) was processed
+      for 95 seconds already
+
+      File 3 (irak4.wav) was processed for 130 seconds
+      already
+
+      File 2 (irak4.wav) was processed for 100 seconds already
+
+      File
+      3 (irak4.wav) was processed for 135 seconds already
+
+      File 2 (irak4.wav)
+      was processed for 105 seconds already
+
+      File 3 (irak4.wav) was processed
+      for 140 seconds already
+
+      File 2 (irak4.wav) was processed for 110 seconds
+      already
+
+      A meta data file (.meta) exists but its asset ''Assets/Resources/testAudios/irak/irak4.srt''
+      can''t be found. When moving or deleting files outside of Unity, please ensure
+      that the corresponding .meta file is moved or deleted along with it.
+
+      Checking
+      file C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Assets/Resources/testAudios/irak/irak4.srt
+      with expected C:/Users/Javi/Documents/Unity Projects/DeepSpeechUnity/Assets/Resources/testOutputs/irak/irak4.srt'
     m_ResultStacktrace: 
     m_TestListState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: adcea793
-      m_LastClickedID: -1817719123
+      m_SelectedIDs: a31c4808
+      m_LastClickedID: 138943651
       m_ExpandedIDs: 05004889adcea7935efec199716b5456ffffff7f
       m_RenameOverlay:
         m_UserAcceptedRename: 0
@@ -1332,8 +2010,8 @@ MonoBehaviour:
     m_ResultStacktrace: 
     m_TestListState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
+      m_SelectedIDs: b957b166
+      m_LastClickedID: 1722898361
       m_ExpandedIDs: 0c219c87adcea793348ec199d998f21affffff7f
       m_RenameOverlay:
         m_UserAcceptedRename: 0
@@ -1360,29 +2038,3 @@ MonoBehaviour:
       selectedCategoryMask: 0
       availableCategories:
       - Uncategorized
---- !u!114 &19
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: GameView
-  m_EditorClassIdentifier: 
-  m_Children: []
-  m_Position:
-    serializedVersion: 2
-    x: 0
-    y: 741
-    width: 450
-    height: 180
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 2}
-  m_Panes:
-  - {fileID: 2}
-  m_Selected: 0
-  m_LastSelected: 0

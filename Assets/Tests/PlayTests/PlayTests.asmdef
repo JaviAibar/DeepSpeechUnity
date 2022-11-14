@@ -4,8 +4,8 @@
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "Script",
-        "Unity.TextMeshPro"
+        "Unity.TextMeshPro",
+        "Transcripter"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

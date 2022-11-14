@@ -196,6 +196,9 @@ def main():
         #    print(transcript.confidence)
         #    print(words_from_candidate_transcript(transcript))
         #metadata = metadata.transcripts[0].tokens
+        path_segmented = get_original_name(args.audio)
+        path_to_save = generate_path(path_segmented, args.output, args.srt_name)
+
         obj = ds.sttWithMetadata(audio, 1)
         metadata = obj.transcripts[0].tokens
         #################################################
@@ -207,12 +210,7 @@ def main():
         print_debug(res)
         #f = open("output.srt", "w")
 
-        path_segmented = get_original_name(args.audio)
-        path_to_save = generate_path(path_segmented, args.output, args.srt_name)
 
-        if os.path.exists(path_to_save):
-            os.remove(path_to_save)
-        path_to_save = path_to_save[1:len(path_to_save)] if (path_to_save[0] == '/') else path_to_save
         f = open(path_to_save, "w")
         f.write(res)
         f.close()
@@ -332,20 +330,22 @@ def generate_path(path_segmented, output_path, output_name):
         path_to_save = path_segmented[0]
 
     if output_name:
-        path_to_save = path_to_save + "/" + (output_name if output_name[-3:] == "srt" else output_name + ".srt")
+        path_to_save = os.sep.join([path_to_save, (output_name if output_name[-3:] == "srt" else output_name + ".srt")])
     else:
-        path_to_save = path_to_save + "/" + path_segmented[1] + ".srt"
+        path_to_save = os.sep.join([path_to_save, path_segmented[1] + ".srt"])
+    if os.path.exists(path_to_save) and os.path.isfile(path_to_save):
+        os.remove(path_to_save)
     return path_to_save
 
 def get_original_name(original_path):
-    pathFragms = original_path.split("/")
-    fileName = pathFragms[len(pathFragms)-1].split(".")[0]
-    pathFragms.pop()
-    return ["/".join(pathFragms), fileName]
+    if os.path.isdir(original_path):
+        return [os.path.dirname(original_path)]
+    path = Path(original_path)
+    return [os.path.dirname(original_path), path.name.split(".")[0], ''.join(path.suffixes)]
 
 def get_audio_from_file(audio_path):
     original_path = get_original_name(audio_path)
-    new_path = original_path[0] + "/" + original_path[1] + ".wav"
+    new_path = os.sep.join([original_path[0], original_path[1]+".wav"])
     stream = ffmpeg.input(audio_path)
     stream = ffmpeg.output(stream.audio, new_path, ar=16000, ac=1)
     stream = ffmpeg.overwrite_output(stream)
@@ -353,10 +353,6 @@ def get_audio_from_file(audio_path):
     return new_path
 
 def prueba():
-    print("esteeee  "+str(os.getcwd()))
-
-    print("esteeee2  "+str(os.getcwd()))
-
     stream = ffmpeg.input('test.mp4')
     stream = ffmpeg.output(stream.audio, 'test.wav', ar=16000)
     stream = ffmpeg.overwrite_output(stream)

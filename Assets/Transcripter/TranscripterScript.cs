@@ -25,10 +25,11 @@ public class TranscripterScript : MonoBehaviour
 
     [Header("Body")]
     public TMP_InputField info;
+    public string Info => info.text;
     //public InputField info;
     public GameObject loading;
     public RectTransform outputPanel;
-    public Scrollbar scroll;
+    private Scrollbar scroll;
 
     [Header("Footer")]
     public GameObject advancedOptions;
@@ -38,14 +39,19 @@ public class TranscripterScript : MonoBehaviour
     public TMP_InputField beamWidthField;
 
 
+
     public readonly ConfigFile defaultOptions = new ConfigFile(0.931289039105002f, 1.1834137581510284f, 1024);
     private string audioRegex = @"\.(3gp|aa|aac|act|aiff|alac|amr|ape|au|awb|dss|dvf|flac|gsm|iklax|ivs|m4a|m4b|m4p|mmf|mp3|mpc|msv|mpc|msv|nmf|ogg|oga|mogg|opus|ra|rm|raw|rf64|sln|tta|voc|vox|wav|wma|wv|webm|8svx|cda)$";
+    private string videoRegex = @"\.(?:mp4|mkv|wmv|m4v|mov|avi|flv|webm|flac|mka|m4a|aac|ogg)$";
+    public string AudioRegex => audioRegex;
+    public string VideoRegex => videoRegex;
     private bool ffmpegNotPresent;
     private bool noLanguageModelPresent;
 
     List<Process> cmds;
+    public List<Process> Cmds => cmds;
     List<string> cmdInfos; // Probably changing to another type of data to store more info
-    public Process Cmd { get; }
+    public List<string> CmdInfos => cmdInfos; // Probably changing to another type of data to store more info
     List<Process> ffmpegCmds;
     [SerializeField] private string fakeVideoWhiteBackground;
     [SerializeField] private string fakeVideoBlackBackground;
@@ -58,11 +64,27 @@ public class TranscripterScript : MonoBehaviour
         cmds = new List<Process>();
         cmdInfos = new List<string>();
         ffmpegCmds = new List<Process>();
-        scroll = FindObjectOfType<Scrollbar>();
+        audioPath.onValueChanged.AddListener(CheckAudioFieldIsFolder);
+    }
+    
+    private void OnDisable()
+    {
+        audioPath.onValueChanged.RemoveListener(CheckAudioFieldIsFolder);
+    }
+    void Start()
+    {
         CheckFFMPEG();
         CheckLanguageModelsAndFillDropDown();
+        scroll = info.GetComponentInChildren<Scrollbar>();
+        fakeBackgroundDropDown.options = new List<TMP_Dropdown.OptionData>() {
+            new TMP_Dropdown.OptionData("Dark Background"),
+            new TMP_Dropdown.OptionData("Light Background")
+        };
+        LoadValues();
+        Application.logMessageReceived += RedirectLogToInputField;
+        FileBrowser.AddQuickLink("StreamingAssets", Application.streamingAssetsPath, null);
+        FileBrowser.AddQuickLink("Videos", Environment.GetFolderPath(Environment.SpecialFolder.MyVideos), null);
     }
-
     private void CheckFFMPEG()
     {
         Process tmpProcess = new Process();
@@ -90,9 +112,18 @@ public class TranscripterScript : MonoBehaviour
         tmpProcess.Exited += new EventHandler(OutputExecution);
     }
 
+    private void CheckAudioFieldIsFolder(string value)
+    {
+        if (File.Exists(value) || Directory.Exists(value))
+        {
+            FileAttributes attr = File.GetAttributes(value);
+            outputFilename.interactable = !attr.HasFlag(FileAttributes.Directory);
+        }
+    }
+
     private void ThrowLanguagesModelsError()
     {
-       PrintToOutput($"Fatal error. There is no language model detected in folder {Application.streamingAssetsPath}/Languages. It should be composed of two big files: .pbmm and .scorer. Please add one language model and restart the aplication.", LogType.Exception);
+        PrintToOutput($"Fatal error. There is no language model detected in folder {Application.streamingAssetsPath}/Languages. It should be composed of two big files: .pbmm and .scorer. Please add one language model and restart the aplication.", LogType.Exception);
         return;
     }
 
@@ -104,10 +135,9 @@ public class TranscripterScript : MonoBehaviour
         {
             ThrowLanguagesModelsError();
             return;
-        } else
-        {
-            FillLanguageDropDown();
         }
+        else
+            FillLanguageDropDown();
     }
 
     public void FillLanguageDropDown()
@@ -131,17 +161,6 @@ public class TranscripterScript : MonoBehaviour
         dropDownLanguages.SetValueWithoutNotify(1);
     }
 
-    void Start()
-    {
-        fakeBackgroundDropDown.options = new List<TMP_Dropdown.OptionData>() {
-            new TMP_Dropdown.OptionData("Dark Background"),
-            new TMP_Dropdown.OptionData("Light Background")
-        };
-        LoadValues();
-        Application.logMessageReceived += RedirectLogToInputField;
-        FileBrowser.AddQuickLink("StreamingAssets", Application.streamingAssetsPath, null);
-        FileBrowser.AddQuickLink("Videos", Environment.GetFolderPath(Environment.SpecialFolder.MyVideos), null);
-    }
 
     /// <summary>
     /// Creates a new Process instances and returns its position in the list
@@ -197,13 +216,14 @@ public class TranscripterScript : MonoBehaviour
         string errors = process.StandardError.ReadToEnd();
         string results = process.StandardOutput.ReadToEnd();
         int cmdID = cmds.FindIndex(e => e.Id == process.Id);
-        print($"Transcription of file {cmdID} ({cmdInfos[cmdID]}) is completed" + "\n\n" + errors + "\n\n" + results);
-        PrintToOutput("Transcription completed" + "\n\n" + errors + "\n\n" + results);
-        scroll.value = scroll.value;
+        //print($"Transcription of file {cmdID} ({cmdInfos[cmdID]}) is completed" + "\n\n" + errors + "\n\n" + results);
+        PrintToOutput($"Transcription completed\n\n{errors}\n\n{results}");
         cmds.RemoveAt(cmdID);
         cmdInfos.RemoveAt(cmdID);
-
-        if (cmds.Count == 0) PrintToOutput("All the files transcripted!");
+        if (cmds.Count == 0)
+        {
+            PrintToOutput("All the processes finished!");
+        }
     }
 
     public void ExplorerSaveClick(string sender)
@@ -217,7 +237,7 @@ public class TranscripterScript : MonoBehaviour
         // Load file/folder: both, Allow multiple selection: true
         // Initial path: default (Documents), Initial filename: empty
         // Title: "Load File", Submit button text: "Load"
-        yield return FileBrowser.WaitForLoadDialog(FileBrowser.PickMode.Files, false, null, null, "Load audio or video file", "Load");
+        yield return FileBrowser.WaitForLoadDialog(FileBrowser.PickMode.FilesAndFolders, false, null, null, "Select a folder, audio or video file", "Load");
 
 
         if (FileBrowser.Success)
@@ -231,6 +251,7 @@ public class TranscripterScript : MonoBehaviour
                 fakeVideoPanel.SetActive(inputField.name.Contains("Audio") && CheckRegex(Path.GetExtension(FileBrowser.Result[0]), audioRegex));
 
                 inputField.text = FileBrowser.Result[0].Replace("\\", "/");
+
             }
 
         }
@@ -248,9 +269,7 @@ public class TranscripterScript : MonoBehaviour
         if (FileBrowser.Success)
         {
             if (sender == "saveButton")
-            {
                 PrintLogToFile(info.text, FileBrowser.Result[0]);
-            }
             else
             {
                 System.Reflection.FieldInfo field = GetType().GetField(sender);
@@ -259,8 +278,6 @@ public class TranscripterScript : MonoBehaviour
             }
         }
     }
-
-
     public void PrintLogToFile(string text, string path = ".")
     {
         path = path.Replace("\\", "/");
@@ -280,31 +297,29 @@ public class TranscripterScript : MonoBehaviour
 
 
         if (!(Directory.Exists(audioPath.text) || File.Exists(audioPath.text)))
-        {
             PrintToOutput("Audio file / folder not found", LogType.Error);
-        }
         else
         {
+            string langSelected = dropDownLanguages.options[dropDownLanguages.value].text;
+            PrintToOutput("Language selected: " + langSelected + "\n");
             FileAttributes attr = File.GetAttributes(audioPath.text);
 
             if (attr.HasFlag(FileAttributes.Directory))
             {
                 List<string> files = Directory.GetFiles(audioPath.text, "*.*", SearchOption.TopDirectoryOnly).ToList();
                 files = files.Where(e => CheckRegex(e, audioRegex)).ToList();
-                files.ForEach(e => ProcessAudioToText(e));
+                foreach (string file in files)
+                    ProcessAudioToText(file, langSelected);
             }
-
             else
-                ProcessAudioToText(audioPath.text);
+                ProcessAudioToText(audioPath.text, langSelected);
         }
     }
 
-    void ProcessAudioToText(string fileName)
+    public void ProcessAudioToText(string filePath, string langSelected)
     {
-        
-        cmdInfos.Add(Path.GetFileName(fileName));
-        string langSelected = dropDownLanguages.options[dropDownLanguages.value].text;
-        PrintToOutput("Language selected: " + langSelected + "\n");
+        string fileName = Path.GetFileName(filePath);
+        cmdInfos.Add(fileName);
         loading.SetActive(true);
         float alpha = string.IsNullOrEmpty(alphaField.text) ? defaultOptions.alpha : float.Parse(alphaField.text);
         float beta = string.IsNullOrEmpty(betaField.text) ? defaultOptions.beta : float.Parse(betaField.text);
@@ -313,10 +328,10 @@ public class TranscripterScript : MonoBehaviour
         command += " --extended";
         command += " --model " + $"\"{Application.streamingAssetsPath}/Languages/{langSelected}.pbmm\"";
         command += File.Exists(Application.streamingAssetsPath + "/Languages/" + langSelected + ".scorer") ? " --scorer " + $"\"{Application.streamingAssetsPath}/Languages/{langSelected}.scorer\"" : "";
-        command += " --audio " + $"\"{fileName}\" --lm_alpha {alpha.ToString().Replace(",", ".")} --lm_beta {beta.ToString().Replace(",", ".")}";
+        command += " --audio " + $"\"{filePath}\" --lm_alpha {alpha.ToString().Replace(",", ".")} --lm_beta {beta.ToString().Replace(",", ".")}";
         command += " --beam_width " + beamWidth.ToString().Replace(",", ".");
         command += (!string.IsNullOrEmpty(outputPathField.text) ? (" --output " + $"\"{outputPathField.text.Replace("\\", "/")}\"") : "");
-        command += (!string.IsNullOrEmpty(outputFilename.text) && CheckRegex(outputFilename.text, regexValidName) ? (" --srt_name " + outputFilename.text) : "");
+        command += (!string.IsNullOrEmpty(outputFilename.text) && outputFilename.interactable && CheckRegex(outputFilename.text, regexValidName) ? (" --srt_name " + outputFilename.text) : "");
         if (verbose.isOn) PrintToOutput($"Executed: \"{Application.streamingAssetsPath}/Dependencies/python.exe\" " + command + "\n");
         int cmdID = InitializeCMD();
         cmds[cmdID].StartInfo.Arguments = command;
@@ -325,15 +340,39 @@ public class TranscripterScript : MonoBehaviour
             GenerateFakeVideo();
         bool started = cmds[cmdID].Start();
         if (started)
-            PrintToOutput("Process successfully started");
+            PrintToOutput($"Process for {fileName} successfully started");
         else
-            PrintToOutput("Process could not be started", LogType.Error);
+            PrintToOutput($"Process could not be started for {fileName}", LogType.Error);
+
         StartCoroutine(WaitUntilCMDExited(cmdID));
+    }
+    public IEnumerator WaitUntilCMDExited(int cmdID)
+    {
+        float timer = 0;
+        int lastTimeSaid = 0;
+        Process process = cmds[cmdID];
+        string fileName = cmdInfos[cmdID];
+        while (!process.HasExited)
+        {
+            timer += Time.deltaTime;
+            int timeInt = (int)timer;
+            float timeFloat = timer - timer;
+            if (timeInt % 5 == 0 && lastTimeSaid != timeInt)
+            {
+                print($"File {cmdID} ({fileName}) was processed for {timeInt} seconds already");
+                lastTimeSaid = timeInt;
+            }
+            yield return null;
+        }
+        process.Dispose();
     }
 
     public void GenerateFakeVideo()
     {
-        string command = " -framerate 1 -i " + $"\"{Application.streamingAssetsPath}/{((fakeBackgroundDropDown.value == 0) ? fakeVideoBlackBackground : fakeVideoWhiteBackground) }\" -i " + $" \"{audioPath.text}\" -t 1500 -s 1024x768 -pix_fmt yuv420p -r 30 " + $"\"{Path.ChangeExtension(audioPath.text, ".mp4")}\"";
+        string filename = (!string.IsNullOrEmpty(outputFilename.text)) ? outputFilename.text : Path.GetFileName(audioPath.text);
+        string folderPath = (!string.IsNullOrEmpty(outputPathField.text) ? (outputPathField.text.Replace("\\", "/") + "/") : Path.GetDirectoryName(audioPath.text));
+        string outputPath = folderPath + "/" + filename;
+        string command = " -framerate 1 -i " + $"\"{Application.streamingAssetsPath}/{((fakeBackgroundDropDown.value == 0) ? fakeVideoBlackBackground : fakeVideoWhiteBackground) }\" -i " + $" \"{audioPath.text}\" -t 1500 -s 1024x768 -pix_fmt yuv420p -r 30 " + $"\"{Path.ChangeExtension(outputPath, ".mp4")}\"";
         int ffmpegID = InitializeFFMPEGCMD();
         ffmpegCmds[ffmpegID].StartInfo.Arguments = command;
         if (verbose.isOn) PrintToOutput("Fake video creation command: " + $"\"{Application.streamingAssetsPath}/Dependencies/ffmpeg.exe\" " + command);
@@ -347,11 +386,13 @@ public class TranscripterScript : MonoBehaviour
     /// <param name="type"></param>
     public void PrintToOutput(string text, LogType type = LogType.Log)
     {
+        if (text == "There can be only one active Event System.") return;
+        if (text == "There are 2 event systems in the scene. Please ensure there is always exactly one event system in the scene") return;
         switch (type)
         {
             case LogType.Error:
             case LogType.Exception:
-                info.text += "<b><color=\"red\">" + text + "</color></b>\n";
+                info.text += $"<b><color=\"red\">{text}</color></b>\n";
                 break;
             case LogType.Warning:
                 if (!text.Contains("for graphic rebuild while we are already inside a graphic rebuild loop. This is not supported"))
@@ -361,6 +402,7 @@ public class TranscripterScript : MonoBehaviour
                 info.text += text + "\n";
                 break;
         }
+
         scroll.value = Mathf.Clamp01(scroll.value);
     }
 
@@ -417,38 +459,11 @@ public class TranscripterScript : MonoBehaviour
     {
         PrintToOutput(logString, type);
     }
-    public string GetAudioRegex()
-    {
-        return audioRegex;
-    }
-    public string GetVideoRegex()
-    {
-        return audioRegex;
-    }
-    public string GetInfo()
-    {
-        return info.text;
-    }
-    public IEnumerator WaitUntilCMDExited(int cmdID)
-    {
-        float timer = 0;
-        int lastTimeSaid = 0;
-        Process process = cmds[cmdID];
-            string fileName = cmdInfos[cmdID];
-        while (!process.HasExited)
-        {
-            timer += Time.deltaTime;
-            int timeInt = (int)timer;
-            float timeFloat = timer - timer;
-            if (timeInt % 5 == 0 && lastTimeSaid != timeInt)
-            {
-                 print($"File {cmdID} ({fileName}) was processed for {timeInt} seconds already");
-                lastTimeSaid = timeInt;
-            }
-            yield return null;
-        }
-    }
 
+    public void SetFakeVideo(bool value)
+    {
+        fakeVideoToggle.isOn = value;
+    }
 }
 
 [Serializable]

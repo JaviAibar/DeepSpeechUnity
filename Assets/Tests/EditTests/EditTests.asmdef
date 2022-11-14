@@ -1,9 +1,10 @@
 {
     "name": "EditTests",
+    "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "Script"
+        "Transcripter"
     ],
     "includePlatforms": [
         "Editor"
