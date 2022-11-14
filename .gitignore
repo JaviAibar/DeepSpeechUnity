@@ -4,7 +4,9 @@
 [Bb]uild/
 [Bb]uilds/
 [Aa]ssets/StreamingAssets/bckup*
-[Aa]ssets/StreamingAssets/Languages/
+[Aa]ssets/StreamingAssets/Languages/*.pbmm
+[Aa]ssets/StreamingAssets/Languages/*.scorer
+[Aa]ssets/StreamingAssets/Languages/*.meta
 Assets/AssetStoreTools*
 
 # Visual Studio cache directory
@@ -38,3 +40,9 @@ sysinfo.txt
 *.apk
 *.unitypackage
 /Logs
+testAudios
+testOutputs
+/Assets/Resources/testOutputs.meta
+/Assets/Resources/testAudios.meta
+/Assets/InitTestScene*
+Backups
