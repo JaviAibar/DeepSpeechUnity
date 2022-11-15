@@ -42,8 +42,10 @@ public class TranscripterScript : MonoBehaviour
 
     public readonly ConfigFile defaultOptions = new ConfigFile(0.931289039105002f, 1.1834137581510284f, 1024);
     private string audioRegex = @"\.(3gp|aa|aac|act|aiff|alac|amr|ape|au|awb|dss|dvf|flac|gsm|iklax|ivs|m4a|m4b|m4p|mmf|mp3|mpc|msv|mpc|msv|nmf|ogg|oga|mogg|opus|ra|rm|raw|rf64|sln|tta|voc|vox|wav|wma|wv|webm|8svx|cda)$";
+    private string audioOrVideoRegex = @"\.(?:mp4|mkv|wmv|m4v|mov|avi|flv|webm|flac|mka|m4a|aac|ogg|3gp|aa|aac|act|aiff|alac|amr|ape|au|awb|dss|dvf|flac|gsm|iklax|ivs|m4a|m4b|m4p|mmf|mp3|mpc|msv|mpc|msv|nmf|ogg|oga|mogg|opus|ra|rm|raw|rf64|sln|tta|voc|vox|wav|wma|wv|webm|8svx|cda)$";
     private string videoRegex = @"\.(?:mp4|mkv|wmv|m4v|mov|avi|flv|webm|flac|mka|m4a|aac|ogg)$";
     public string AudioRegex => audioRegex;
+    public string AudioOrVideoRegex => audioOrVideoRegex;
     public string VideoRegex => videoRegex;
     private bool ffmpegNotPresent;
     private bool noLanguageModelPresent;
@@ -307,7 +309,7 @@ public class TranscripterScript : MonoBehaviour
             if (attr.HasFlag(FileAttributes.Directory))
             {
                 List<string> files = Directory.GetFiles(audioPath.text, "*.*", SearchOption.TopDirectoryOnly).ToList();
-                files = files.Where(e => CheckRegex(e, audioRegex)).ToList();
+                files = files.Where(e => CheckRegex(e, AudioOrVideoRegex)).ToList();
                 foreach (string file in files)
                     ProcessAudioToText(file, langSelected);
             }
